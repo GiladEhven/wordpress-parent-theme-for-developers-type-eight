@@ -36,7 +36,7 @@
 
                     add_editor_style( 'admin/css/editor.css' );
 
-                    load_theme_textdomain( 'gilad-ehven', get_template_directory() . '/public/mo' );
+                    load_theme_textdomain( 'theme-starter-type-eight', get_template_directory() . '/public/mo' );
 
                 } );
 
