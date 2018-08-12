@@ -19,6 +19,9 @@
 
             public function __construct() {
 
+                $this->set_theme_name();
+                $this->set_theme_version();
+
                 if ( is_admin() ) {
 
                     require_once( get_stylesheet_directory() . '/admin/php/loaders/class-admin-resources.php' );
@@ -48,13 +51,9 @@
                 }
 
                 require_once( get_stylesheet_directory() . '/common/php/types/class-cpt-example.php' );
-
                 $cpt_example = new CPT_Example;
 
                 self::$object_counter++;
-
-                $this->set_theme_name();
-                $this->set_theme_version();
 
             }
 

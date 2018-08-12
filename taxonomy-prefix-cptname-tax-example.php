@@ -28,10 +28,10 @@
 
             	$data = $this->package_data_for_view();
 
-                self::$object_counter++;
-
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-taxonomy-gilad-faq-tax-topic.php' );
                 $view_taxonomy_faq_topic = new View_Taxonomy_FAQ_Topic( $data );
+
+                self::$object_counter++;
 
             }
 

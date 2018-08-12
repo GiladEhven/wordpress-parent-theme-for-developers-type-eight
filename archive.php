@@ -22,10 +22,10 @@
 
             	$data = $this->package_data_for_view();
 
-                self::$object_counter++;
-
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive.php' );
                 $view_archive = new View_Archive( $data );
+
+                self::$object_counter++;
 
             }
 

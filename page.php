@@ -20,18 +20,18 @@
 
             public function __construct() {
 
+                $this->set_requested_resource();
+
             	$data = $this->package_data_for_view();
 
                 add_action( 'init', function() {
                     add_post_type_support( 'page', 'excerpt' );
                 } );
 
-                self::$object_counter++;
-
-                $this->set_requested_resource();
-
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-page.php' );
                 $view_page = new View_Page( $data );
+
+                self::$object_counter++;
 
             }
 

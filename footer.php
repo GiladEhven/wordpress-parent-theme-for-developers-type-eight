@@ -16,14 +16,14 @@
 
             public function __construct() {
 
-                $data = $this->package_data_for_view();
-
-                self::$object_counter++;
-
                 $this->set_requested_resource();
+
+                $data = $this->package_data_for_view();
 
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-footer.php' );
                 $view_footer = new View_Footer( $data );
+
+                self::$object_counter++;
 
             }
 

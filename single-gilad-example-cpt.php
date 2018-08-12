@@ -22,10 +22,10 @@
 
             	$data = $this->package_data_for_view();
 
-                self::$object_counter++;
-
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-single-prefix-example-cpt.php' );
                 $view_single_example = new View_Single_Example( $data );
+
+                self::$object_counter++;
 
             }
 

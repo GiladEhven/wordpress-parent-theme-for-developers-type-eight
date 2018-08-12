@@ -20,14 +20,14 @@
 
             public function __construct() {
 
-                $data = $this->get_acf_data();
-
-                self::$object_counter++;
-
                 $this->set_requested_resource();
+
+                $data = $this->get_acf_data();
 
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-404.php' );
                 $view_404 = new View_404( $data );
+
+                self::$object_counter++;
 
             }
 

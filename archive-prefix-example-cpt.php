@@ -22,10 +22,10 @@
 
             	$data = $this->package_data_for_view();
 
-                self::$object_counter++;
-
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive-gilad-example-cpt.php' );
                 $view_archive_faq = new View_Archive_Example( $data );
+
+                self::$object_counter++;
 
             }
 

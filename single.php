@@ -20,14 +20,14 @@
 
             public function __construct() {
 
-            	$data = $this->package_data_for_view();
-
-                self::$object_counter++;
-
                 $this->set_requested_resource();
+
+            	$data = $this->package_data_for_view();
 
                 require_once( get_stylesheet_directory() . '/public/php/views/class-view-single.php' );
                 $view_single = new View_Single( $data );
+
+                self::$object_counter++;
 
             }
 
