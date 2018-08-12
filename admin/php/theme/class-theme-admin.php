@@ -14,15 +14,7 @@
 
             public function __construct() {
 
-                if ( is_admin() ) {
-
-                	//
-
-                } else {
-
-                	//
-
-                }
+                //
 
                 self::$object_counter++;
 

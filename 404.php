@@ -20,15 +20,7 @@
 
             public function __construct() {
 
-                if ( is_admin() ) {
-
-                	//
-
-                } else {
-
-                	$data = $this->get_acf_data();
-
-                }
+                $data = $this->get_acf_data();
 
                 self::$object_counter++;
 

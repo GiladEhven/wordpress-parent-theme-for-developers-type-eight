@@ -16,15 +16,7 @@
 
             public function __construct() {
 
-                if ( is_admin() ) {
-
-                	//
-
-                } else {
-
-                	$data = $this->package_data_for_view();
-
-                }
+                $data = $this->package_data_for_view();
 
                 self::$object_counter++;
 
