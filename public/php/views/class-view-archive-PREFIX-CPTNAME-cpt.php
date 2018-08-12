@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-	class View_Archive_Example { public function __construct( $data ) {
+	class View_Archive_CPTNAME { public function __construct( $data ) {
 
 	   //  --------------------------  DO NOT EDIT ABOVE THIS LINE  --------------------------  //  ?>
 

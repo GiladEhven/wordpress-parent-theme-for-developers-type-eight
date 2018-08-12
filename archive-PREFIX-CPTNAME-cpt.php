@@ -4,9 +4,9 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Single_Example' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'Template_Archive_CPTNAME' ) ) {
 
-        class Template_Single_Example {
+        class Template_Archive_CPTNAME {
 
             private $requested_resource;
 
@@ -22,8 +22,8 @@
 
             	$data = $this->package_data_for_view();
 
-                require_once( get_stylesheet_directory() . '/public/php/views/class-view-single-prefix-example-cpt.php' );
-                $view_single_example = new View_Single_Example( $data );
+                require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive-PREFIX-CPTNAME-cpt.php' );
+                $view_archive_faq = new View_Archive_CPTNAME( $data );
 
                 self::$object_counter++;
 
@@ -47,11 +47,9 @@
 
                 <div id="main">
 
-                	This is a Single FAQ (pumped in via view)... 
-
                     <?php
 
-                        $template_single_example = new Template_Single_Example();
+                        $template_archive_CPTNAME = new Template_Archive_CPTNAME();
 
                     ?>
 

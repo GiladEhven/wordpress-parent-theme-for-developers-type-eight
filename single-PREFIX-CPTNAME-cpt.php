@@ -4,9 +4,9 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Archive_FAQ' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'Template_Single_CPTNAME' ) ) {
 
-        class Template_Archive_FAQ {
+        class Template_Single_CPTNAME {
 
             private $requested_resource;
 
@@ -22,8 +22,8 @@
 
             	$data = $this->package_data_for_view();
 
-                require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive-gilad-example-cpt.php' );
-                $view_archive_faq = new View_Archive_Example( $data );
+                require_once( get_stylesheet_directory() . '/public/php/views/class-view-single-PREFIX-CPTNAME-cpt.php' );
+                $view_single_CPTNAME = new View_Single_CPTNAME( $data );
 
                 self::$object_counter++;
 
@@ -47,9 +47,11 @@
 
                 <div id="main">
 
+                	This is a Single FAQ (pumped in via view)... 
+
                     <?php
 
-                        $template_archive_example = new Template_Archive_Example();
+                        $template_single_CPTNAME = new Template_Single_CPTNAME();
 
                     ?>
 

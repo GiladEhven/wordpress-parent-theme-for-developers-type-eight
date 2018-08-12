@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    class View_Taxonomy_CPT_Tax { public function __construct( $data ) {
+    class View_Taxonomy_CPTNAME_TAXNAME { public function __construct( $data ) {
 
        //  --------------------------  DO NOT EDIT ABOVE THIS LINE  --------------------------  //  ?>
 

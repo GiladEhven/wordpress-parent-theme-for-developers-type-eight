@@ -4,9 +4,9 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Taxonomy_CPT_Tax' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'Template_Taxonomy_CPTNAME_TAXNAME' ) ) {
 
-        class Template_Taxonomy_CPT_Tax {
+        class Template_Taxonomy_CPTNAME_TAXNAME {
 
         	private $taxonomy_terms;
 
@@ -74,7 +74,7 @@
 
                     <?php
 
-                        $template_taxonomy_faq_topic = new Template_Taxonomy_FAQ_Topic();
+                        $template_taxonomy_CPTNAME_TAXNAME = new Template_Taxonomy_CPTNAME_TAXNAME();
 
                     ?>
 
