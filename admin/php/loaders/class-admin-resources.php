@@ -35,10 +35,10 @@
             private function enqueue_css() {
                 add_action( 'admin_enqueue_scripts', function() {
 
-                    wp_enqueue_style( $this->text_domain . '-main',   get_stylesheet_directory_uri() . '/admin/css/main.css',    array(), $this->theme_version, 'all' );
+                    wp_enqueue_style( $this->text_domain . '-main',   get_stylesheet_directory_uri() . '/admin/css/main.css',   array(), $this->theme_version, 'all' );
 
                     if ( GILAD_WEBSITE_PHASE == 'dev' ) {
-                    wp_enqueue_style( $this->text_domain . '-design', get_stylesheet_directory_uri() . '/public/css/design.css', array(), $this->theme_version, 'all' );
+                    wp_enqueue_style( $this->text_domain . '-design', get_stylesheet_directory_uri() . '/admin/css/design.css', array(), $this->theme_version, 'all' );
                     }
 
                 });
