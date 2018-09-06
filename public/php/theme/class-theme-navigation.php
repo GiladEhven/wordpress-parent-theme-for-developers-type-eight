@@ -20,10 +20,11 @@
 
             public static function footer( $copyright_start, $copyright_owner, $copyright_level ) {
 
+if ( has_nav_menu( 'footer-menu' ) ) {
                 $locations = get_nav_menu_locations();
                 $menu      = wp_get_nav_menu_object( $locations['footer-menu'] );
                 $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-
+}
                 ?>
 
                 <!--  NAV MARKUP AND LOGIC HERE (UNLESS MARKUP CAN BE PUSHED TO VIEW)  --><?php
@@ -33,10 +34,11 @@
 
             public static function header() {
 
+if ( has_nav_menu( 'header-menu' ) ) {
                 $locations = get_nav_menu_locations();
                 $menu      = wp_get_nav_menu_object( $locations['header-menu'] );
                 $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-
+}
                 ?>
 
                 <!--  NAV MARKUP AND LOGIC HERE (UNLESS MARKUP CAN BE PUSHED TO VIEW)  --><?php

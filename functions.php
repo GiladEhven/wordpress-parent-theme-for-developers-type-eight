@@ -50,8 +50,8 @@
 
                 }
 
-                require_once( get_stylesheet_directory() . '/common/php/types/class-cpt-example.php' );
-                $cpt_example = new CPT_Example;
+//              require_once( get_stylesheet_directory() . '/common/php/types/class-cpt-example.php' );
+//              $cpt_example = new CPT_Example;
 
                 self::$object_counter++;
 
