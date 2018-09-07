@@ -4,26 +4,30 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-wordpress-fragment.php' );
+
     if ( ! class_exists( __NAMESPACE__ . 'Template_Footer' ) ) {
 
-        class Template_Footer {
+        class Template_Footer extends Abstract_WordPress_Fragment {
 
-            private $requested_resource;
+//          private $requested_resource;
 
             //  NOTICE? HERE OR IN HEADER?
 
-            public static $object_counter = 0;
+//          public static $object_counter = 0;
 
             public function __construct() {
 
-                $this->set_requested_resource();
+//              $this->set_requested_resource();
 
-                $data = $this->package_data_for_view();
+//              $data = $this->package_data_for_view();
 
-                require_once( get_stylesheet_directory() . '/public/php/views/class-view-footer.php' );
-                $view_footer = new View_Footer( $data );
+//              require_once( get_stylesheet_directory() . '/public/php/views/class-view-footer.php' );
+//              $view_footer = new View_Footer( $data );
 
-                self::$object_counter++;
+//              self::$object_counter++;
+
+                parent::__construct();
 
             }
 

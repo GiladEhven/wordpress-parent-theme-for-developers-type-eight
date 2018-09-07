@@ -4,11 +4,13 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-list.php' );
+
     if ( ! class_exists( __NAMESPACE__ . 'Template_Archive' ) ) {
 
-        class Template_Archive {
+        class Template_Archive extends Abstract_List {
 
-            private $requested_resource;
+//          private $requested_resource;
 
             //  GET META
 
@@ -16,18 +18,20 @@
 
             //  PACKAGE DATA: CONTENT, EXCERPT, FIELDS, GET's
 
-            public static $object_counter = 0;
+//          public static $object_counter = 0;
 
             public function __construct() {
 
-            	$data = $this->package_data_for_view();
+//          	$data = $this->package_data_for_view();
 
-                require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive.php' );
-                $view_archive = new View_Archive( $data );
+//              require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive.php' );
+//              $view_archive = new View_Archive( $data );
 
-                self::$object_counter++;
+//              self::$object_counter++;
 
-            }
+                parent::__construct();
+
+          }
 
             //  ----------------------------  MISSION LOGIC  ----------------------------  //
 

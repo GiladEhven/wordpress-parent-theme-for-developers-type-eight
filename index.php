@@ -4,11 +4,13 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-front.php' );
+
     if ( ! class_exists( __NAMESPACE__ . 'Template_Index' ) ) {
 
-        class Template_Index {
+        class Template_Index extends Abstract_Front {
 
-            private $requested_resource;
+//          private $requested_resource;
 
             //  GET META
 
@@ -16,18 +18,20 @@
 
             //  PACKAGE DATA: CONTENT, EXCERPT, FIELDS, GET's
 
-            public static $object_counter = 0;
+//          public static $object_counter = 0;
 
             public function __construct() {
 
-                $this->set_requested_resource();
+//              $this->set_requested_resource();
 
-            	$data = $this->package_data_for_view();
+//          	$data = $this->package_data_for_view();
 
-                require_once( get_stylesheet_directory() . '/public/php/views/class-view-index.php' );
-                $view_index = new View_Index( $data );
+//              require_once( get_stylesheet_directory() . '/public/php/views/class-view-index.php' );
+//              $view_index = new View_Index( $data );
 
-                self::$object_counter++;
+//              self::$object_counter++;
+
+                parent::__construct();
 
             }
 
