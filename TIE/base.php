@@ -14,9 +14,9 @@
 
     if ( ! defined( 'GILAD_WEBSITE_PHASE' ) )   define( 'GILAD_WEBSITE_PHASE',    '' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'TIE_Base' ) ) {
 
-        abstract class Base {
+        abstract class TIE_Base {
 
             public function __construct() {
 
