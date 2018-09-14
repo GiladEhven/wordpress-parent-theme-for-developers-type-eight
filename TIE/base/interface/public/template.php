@@ -10,7 +10,19 @@
 
         abstract class TIE_Template extends TIE_Public {
 
-            protected $template_data_for_view = array( 'error' => 'NO DATA PUSHED FROM TEMPLATE!' );
+//          protected $template_data_for_view = array( 'error' => 'NO DATA PUSHED FROM TEMPLATE!' );
+
+            protected $template_data_for_view = array
+            (
+
+                'error' => array
+                (
+                    'code'        => 'E0101',
+                    'message'     => 'NO DATA PUSHED FROM TEMPLATE!',
+                    'description' => 'Template [file] class has been instantiated, but no data captured or pushed in array via [set_template_data_for_view] to the [template_data_for_view] property. This means that the object representing this WordPress Template (type/role) contains no content for display on the front end. Note also that this error data is generated within the same [template_data_for_view] property in the form of default field value (overwritten/replaced automatically upon data push from template into [set_template_data_for_view] instance method.',
+                    'resolution'  => 'At template file, any time after template class instantiation, call [set_template_data_for_view] and pass array of content data.',
+                )
+            );
 
             public function __construct() {
 
