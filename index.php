@@ -4,54 +4,15 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-front.php' );
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/front/index.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'Template_Index' ) ) {
 
-        class Template_Index extends Abstract_Front {
-
-//          private $requested_resource;
-
-            //  GET META
-
-            //  GET REFERRER
-
-            //  PACKAGE DATA: CONTENT, EXCERPT, FIELDS, GET's
-
-//          public static $object_counter = 0;
+        class Template_Index extends TIE_Index {
 
             public function __construct() {
 
-//              $this->set_requested_resource();
-
-//          	$data = $this->package_data_for_view();
-
-//              require_once( get_stylesheet_directory() . '/public/php/views/class-view-index.php' );
-//              $view_index = new View_Index( $data );
-
-//              self::$object_counter++;
-
                 parent::__construct();
-
-            }
-
-            //  -------------------------  GETTERS AND SETTERS  -------------------------  //
-
-            public function get_requested_resource() {
-                return $this->requested_resource;
-            }
-
-            protected function set_requested_resource() {
-                $this->requested_resource = 'undetermined';
-            }
-
-            //  ----------------------------  MISSION LOGIC  ----------------------------  //
-
-            protected function package_data_for_view() {
-
-                    $data = array();
-
-                    return $data;
 
             }
 
@@ -59,12 +20,23 @@
 
     }
 
-    get_header(); ?>
+
+    $template_index = new Template_Index();
+
+    $template_index->package_template_data_for_view(array(
+        'one' => 'first',
+        'two' => 'second',
+    ));
+
+    echo '<br> FROM [Template_Index]: THIS IS [$template_index->template_data_for_view]...<br>';
+    print_r( $template_index->template_data_for_view );
+
+    // get_header(); ?>
 
                 <div id="main">
 
-                    <?php $template_index = new Template_Index(); ?>
+                    <?php // $template_index = new Template_Index(); ?>
 
                 </div><!-- / # main -->
 
-    <?php get_footer();
+    <?php // get_footer();
