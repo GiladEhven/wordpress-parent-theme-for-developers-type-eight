@@ -21,16 +21,22 @@
     }
 
 
+
     $template_index = new Template_Index();
 
+
+
+    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
     $template_index->set_template_data_for_view(array(
         'one' => 'first',
         'two' => 'second',
     ));
 
-    echo '<br> FROM [Template_Index]: THIS IS [$template_index->template_data_for_view]...<br>';
-    $template_data_for_view = $template_index->get_template_data_for_view();
-    print_r( $template_data_for_view );
+
+
+    $template_index->view_template();
+
+
 
     // get_header(); ?>
 
