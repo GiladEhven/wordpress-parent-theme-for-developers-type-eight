@@ -23,13 +23,14 @@
 
     $template_index = new Template_Index();
 
-    $template_index->package_template_data_for_view(array(
+    $template_index->set_template_data_for_view(array(
         'one' => 'first',
         'two' => 'second',
     ));
 
     echo '<br> FROM [Template_Index]: THIS IS [$template_index->template_data_for_view]...<br>';
-    print_r( $template_index->template_data_for_view );
+    $template_data_for_view = $template_index->get_template_data_for_view();
+    print_r( $template_data_for_view );
 
     // get_header(); ?>
 

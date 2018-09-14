@@ -10,7 +10,7 @@
 
         abstract class TIE_Template extends TIE_Public {
 
-            public $template_data_for_view;
+            protected $template_data_for_view;
 
             public function __construct() {
 
@@ -18,7 +18,13 @@
 
             }
 
-            public function package_template_data_for_view( $data ) {
+            public function get_template_data_for_view() {
+
+                return $this->template_data_for_view;
+
+            }
+
+            public function set_template_data_for_view( $data ) {
 
                 echo '<br>IF WE CAN SEE THIS, WE KNOW THAT [TIE_Template][package_template_data_for_view] IS FOUND AND WORKING...<br>';
 
