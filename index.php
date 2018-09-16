@@ -12,6 +12,8 @@
 
             public function __construct() {
 
+                $this->get_view( basename( __FILE__ ) );
+
                 parent::__construct();
 
             }
