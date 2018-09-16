@@ -4,11 +4,11 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-wordpress-fragment.php' );
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/partial.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'Template_Footer' ) ) {
 
-        class Template_Footer extends Abstract_WordPress_Fragment {
+        class Template_Footer extends TIE_Partial {
 
 //          private $requested_resource;
 

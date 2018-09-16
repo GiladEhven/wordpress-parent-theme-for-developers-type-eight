@@ -4,11 +4,11 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-list.php' );
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/list.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'Template_Archive' ) ) {
 
-        class Template_Archive extends Abstract_List {
+        class Template_Archive extends TIE_List {
 
 //          private $requested_resource;
 

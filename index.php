@@ -4,11 +4,11 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/front/index.php' );
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/front.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'Template_Index' ) ) {
 
-        class Template_Index extends TIE_Index {
+        class Template_Index extends TIE_Front {
 
             public function __construct() {
 

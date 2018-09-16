@@ -4,11 +4,11 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/public/php/abstracts/class-abstract-error.php' );
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/error.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'Template_404' ) ) {
 
-        class Template_404 extends Abstract_Error {
+        class Template_404 extends TIE_Error {
 
             private $requested_resource;
 
