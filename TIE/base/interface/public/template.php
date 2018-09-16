@@ -36,6 +36,23 @@
 
             }
 
+            public function get_view( $view ) {
+
+                $public_view = get_stylesheet_directory() . '/public/views/class-view-' . $view;
+                $tie_view    = GILAD_TIE . '/app/views/class-view-' . $view;
+
+                if ( file_exists( $public_view ) ) {
+                    require_once( $public_view );
+                } elseif ( file_exists( $tie_view ) ) {
+                    require_once( $tie_view );
+                } else {
+
+                    // TODO: IMPLEMENT ERROR ARRAY
+
+                }
+
+            }
+
             public function set_template_data_for_view( $data ) {
 
                 $this->template_data_for_view = $data;
@@ -43,7 +60,7 @@
             }
 
             public function view_template() {
-
+get_header();
                 print_r( $this->template_data_for_view );
 
             }
