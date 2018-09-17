@@ -6,9 +6,9 @@
 
     require_once( __DIR__ . '/../resource.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'TIE_Main' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'TIE_Style' ) ) {
 
-        abstract class TIE_Main extends TIE_Resource {
+        abstract class TIE_Style extends TIE_Resource {
 
             public function __construct() {
 

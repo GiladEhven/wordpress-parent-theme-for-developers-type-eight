@@ -4,19 +4,17 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    require_once( GILAD_TIE . '/base/interface/public/resource/style.php' );
+
     if ( ! class_exists( __NAMESPACE__ . 'Public_Resources' ) ) {
 
-        class Public_Resources {
+        class Public_Resources extends TIE_Style {
 
             private $text_domain;
 
             private $theme_version;
 
-            public static $object_counter = 0;
-
             public function __construct() {
-
-                self::$object_counter++;
 
                 $this->set_theme_descriptors();
 
@@ -48,15 +46,21 @@
             }
 
             private function enqueue_css() {
+
                 add_action( 'wp_enqueue_scripts', function() {
 
-                    wp_enqueue_style( 'bootstrap',                   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css',  array(), $this->theme_version, 'all' );
-                    wp_enqueue_style( 'font-awesome',                'https://use.fontawesome.com/releases/v5.1.1/css/all.css',                   array(), $this->theme_version, 'all' );
+                    if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+                        wp_enqueue_style( 'localhost-bootstrap',        get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css',        array(), $this->theme_version, 'all' );
+                        wp_enqueue_style( 'localhost-font-awesome',     get_stylesheet_directory_uri() . '/public/styles/localhost/font-awesome.css',     array(), $this->theme_version, 'all' );
+                    } else {
+                        wp_enqueue_style( 'bootstrap',                  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css',    array(), $this->theme_version, 'all' );
+                        wp_enqueue_style( 'font-awesome',               'https://use.fontawesome.com/releases/v5.1.1/css/all.css',                     array(), $this->theme_version, 'all' );
+                    }
 
-                    wp_enqueue_style( $this->text_domain . '-main',   get_stylesheet_directory_uri() . '/public/css/main.css',                    array(), $this->theme_version, 'all' );
+                    wp_enqueue_style( $this->text_domain . '-main',   get_stylesheet_directory_uri() . '/public/styles/main.css', array(), $this->theme_version, 'all' );
 
-                    if ( GILAD_WEBSITE_PHASE == 'dev' ) {
-                    wp_enqueue_style( $this->text_domain . '-design', get_stylesheet_directory_uri() . '/public/css/design.css',                  array(), $this->theme_version, 'all' );
+                    if ( strtolower( GILAD_ENVIRONMENT ) == 'dev' ) {
+                        wp_enqueue_style( $this->text_domain . '-design', get_stylesheet_directory_uri() . '/public/styles/design.css', array(), $this->theme_version, 'all' );
                     }
 
                 });
@@ -69,7 +73,7 @@
                     wp_enqueue_script( 'jquery',                     'https://code.jquery.com/jquery-3.3.1.slim.min.js',                          array(), $this->theme_version, true );
                     wp_enqueue_script( 'popper',                     'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array(), $this->theme_version, true );
                     wp_enqueue_script( 'bootstrap',                  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js',    array(), $this->theme_version, true );
-                    wp_enqueue_script( $this->text_domain,            get_stylesheet_directory_uri() . '/public/js/main.js',                      array(), $this->theme_version, true );
+                    wp_enqueue_script( $this->text_domain,            get_stylesheet_directory_uri() . '/public/scripts/main.js',                      array(), $this->theme_version, true );
                 });
 
                 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) {

@@ -9,7 +9,7 @@
     if ( ! defined( 'GILAD_ENABLE_SCRIBE_FOR_REST' ) )     define( 'GILAD_ENABLE_SCRIBE_FOR_REST',     true );
     if ( ! defined( 'GILAD_ENABLE_SCRIBE_FOR_VIEW' ) )     define( 'GILAD_ENABLE_SCRIBE_FOR_VIEW',     true );
 
-    if ( ! defined( 'GILAD_ENVIRONMENT' ) )                define( 'GILAD_ENVIRONMENT',                'LOCALHOST' );
+    if ( ! defined( 'GILAD_ENVIRONMENT' ) )                define( 'GILAD_ENVIRONMENT',                'PRODUCTION' );
 
     if ( ! defined( 'GILAD_ID_TGM' ) )                     define( 'GILAD_ID_TGM',                     'UNSPECIFIED_GTM_CONTAINER_ID' );
 
@@ -63,7 +63,8 @@
                 } else {
 
                     require_once( get_stylesheet_directory() . '/public/php/class-public-hooks.php' );
-                    require_once( get_stylesheet_directory() . '/public/php/loaders/class-public-resources.php' );
+//                  require_once( get_stylesheet_directory() . '/public/php/loaders/class-public-resources.php' );
+                    require_once( get_stylesheet_directory() . '/public/loaders/class-public-resources.php' );
                     require_once( get_stylesheet_directory() . '/public/php/theme/class-theme-navigation.php' );
 
                     require_once( get_stylesheet_directory() . '/public/php/class-public-utilities.php' );
