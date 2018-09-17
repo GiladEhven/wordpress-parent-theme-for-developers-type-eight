@@ -62,14 +62,16 @@
 
                 } else {
 
-                    require_once( get_stylesheet_directory() . '/public/php/class-public-hooks.php' );
+//      require_once( get_stylesheet_directory() . '/public/php/class-public-hooks.php' );
 //                  require_once( get_stylesheet_directory() . '/public/php/loaders/class-public-resources.php' );
                     require_once( get_stylesheet_directory() . '/public/php/theme/class-theme-navigation.php' );
 
                     require_once( get_stylesheet_directory() . '/public/php/class-public-utilities.php' );
 
-                    $public_hooks      = new Public_Hooks;
+//                    $public_hooks      = new Public_Hooks;
                     $theme_navigation   = new Theme_Navigation;
+
+
 
                     require_once( get_stylesheet_directory() . '/public/loaders/class-public-scripts.php' );
                     require_once( get_stylesheet_directory() . '/public/loaders/class-public-styles.php' );

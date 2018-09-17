@@ -59,7 +59,7 @@
 
     }
 
-            gilad_main_end(); ?>
+            //gilad_main_end(); ?>
 
 			</main>
 
@@ -67,23 +67,23 @@
 
 			    <?php
 
-                    gilad_footer_begin();
+                    //gilad_footer_begin();
 
                     $template_footer = new Template_Footer();
 
-                    gilad_footer_end();
+                    //gilad_footer_end();
 
                 ?>
 
 			</footer>
 
-            <?php gilad_wrapper_end(); ?>
+            <?php //gilad_wrapper_end(); ?>
 
 		</div>
 
         <?php
 
-            gilad_body_end();
+            //gilad_body_end();
 
             wp_footer();
 

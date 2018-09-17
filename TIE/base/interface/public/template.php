@@ -12,7 +12,6 @@
 
             protected $data = array
             (
-
                 'error' => array
                 (
                     'code'        => 'E0101',
@@ -27,6 +26,12 @@
             public function __construct() {
 
                 parent::__construct();
+
+            }
+
+            public function get_data() {
+
+                return $this->data;
 
             }
 
@@ -47,17 +52,63 @@
 
             }
 
-            public function get_data() {
-
-                return $this->data;
-
-            }
-
             public function set_data( $data ) {
 
                 $this->data = $data;
 
             }
+
+            //  UGLY!
+
+            //  -------------------------------------  BEGIN AND END : TEMPLATES  -------------------------------------  //
+
+            public function gilad_body_begin()           { do_action( 'gilad_body_begin' );           }
+
+            public function gilad_body_end()             { do_action( 'gilad_body_end' );             }
+
+            public function gilad_footer_begin()         { do_action( 'gilad_footer_begin' );         }
+
+            public function gilad_footer_end()           { do_action( 'gilad_footer_end' );           }
+
+            public function gilad_header_begin()         { do_action( 'gilad_header_begin' );         }
+
+            public function gilad_header_end()           { do_action( 'gilad_header_end' );           }
+
+            public function gilad_main_begin()           { do_action( 'gilad_main_begin' );           }
+
+            public function gilad_main_end()             { do_action( 'gilad_main_end' );             }
+
+            public function gilad_wrapper_begin()        { do_action( 'gilad_wrapper_begin' );        }
+
+            public function gilad_wrapper_end()          { do_action( 'gilad_wrapper_end' );          }
+
+            //  -----------------------------------  BEGIN AND END : DEFAULT LOOPS  -----------------------------------  //
+
+            public function gilad_else_posts_begin()     { do_action( 'gilad_else_posts_begin' );     }
+
+            public function gilad_else_posts_end()       { do_action( 'gilad_else_posts_end' );       }
+
+            public function gilad_if_posts_begin()       { do_action( 'gilad_if_posts_begin' );       }
+
+            public function gilad_if_posts_end()         { do_action( 'gilad_if_posts_end' );         }
+
+            public function gilad_while_posts_begin()    { do_action( 'gilad_while_posts_begin' );    }
+
+            public function gilad_while_posts_end()      { do_action( 'gilad_while_posts_end' );      }
+
+            //  ------------------------------------------  BEFORE AND AFTER  -----------------------------------------  //
+
+            public function gilad_gtm_after()            { do_action( 'gilad_gtm_after' );            }
+
+            public function gilad_gtm_before()           { do_action( 'gilad_gtm_before' );           }
+
+            //  --------------------------------------------  ADD ANOTHER  --------------------------------------------  //
+
+            public function gilad_link_add()             { do_action( 'gilad_link_add' );             }
+
+            public function gilad_meta_add()             { do_action( 'gilad_meta_add' );             }
+
+            //  -------------------------------------------------------------------------------------------------------  //
 
         }
 

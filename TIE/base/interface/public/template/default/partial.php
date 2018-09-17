@@ -27,7 +27,7 @@
 
                             <?php
 
-                                gilad_gtm_before();
+                                $this->gilad_gtm_before();
 
                                 if ( GILAD_ID_TGM != 'UNSPECIFIED_GTM_CONTAINER_ID' ) {
 
@@ -43,7 +43,7 @@
 
                                 }
 
-                                gilad_gtm_after();
+                                $this->gilad_gtm_after();
 
                             ?>
 
@@ -51,11 +51,11 @@
                             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                             <meta name="description" content="<?php bloginfo( 'description' ); ?>" />
                             <meta name="viewport" content="width=device-width, initial-scale=1" />
-                            <?php gilad_meta_add(); ?>
+                            <?php $this->gilad_meta_add(); ?>
 
                             <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
                             <link rel="profile" href="http://gmpg.org/xfn/11" />
-                            <?php gilad_link_add(); ?>
+                            <?php $this->gilad_link_add(); ?>
 
                             <?php // gravity_form_enqueue_scripts( 1, true );
                             wp_head(); ?>
@@ -68,21 +68,21 @@
                             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo GILAD_ID_TGM; ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <?php } ?>
 
-                            <?php gilad_body_begin(); ?>
+                            <?php $this->gilad_body_begin(); ?>
 
                             <div id="body">
 
-                                <?php gilad_wrapper_begin(); ?>
+                                <?php $this->gilad_wrapper_begin(); ?>
 
                                 <header>
 
                                     <?php
 
-                                        gilad_header_begin();
+                                        $this->gilad_header_begin();
 
                                         // TODO: IMPLEMENT HEADER VIEW HERE
 
-                                        gilad_header_end();
+                                        $this->gilad_header_end();
 
                                     ?>
 
@@ -92,7 +92,7 @@
 
                                     <?php
 
-                                        gilad_main_begin();
+                                        $this->gilad_main_begin();
 
             }
 
