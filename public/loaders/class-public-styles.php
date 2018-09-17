@@ -6,44 +6,36 @@
 
     require_once( GILAD_TIE . '/base/interface/public/resource/style.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Public_Resources' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'Public_Styles' ) ) {
 
-        class Public_Resources extends TIE_Style {
-
-            private $text_domain;
-
-            private $theme_version;
+        class Public_Styles extends TIE_Style {
 
             public function __construct() {
 
-                $this->set_theme_descriptors();
+//              $this->set_theme_descriptors();
+                $this->set_text_domain();
+                $this->set_theme_version();
 
                 $this->dequeue_css();
-                $this->dequeue_js();
+//              $this->dequeue_js();
                 $this->enqueue_css();
-                $this->enqueue_js();
+//              $this->enqueue_js();
 
             }
 
             //  -------------------------  GETTERS AND SETTERS  -------------------------  //
-
-            protected function set_theme_descriptors() {
-                $theme_object = wp_get_theme();
-                $this->text_domain = $theme_object->get( 'TextDomain' );
-                $this->theme_version = $theme_object->get( 'Version' );
-            }
 
             //  ----------------------------  MISSION LOGIC  ----------------------------  //
 
             private function dequeue_css() {
             }
 
-            private function dequeue_js() {
-                add_action( 'wp_enqueue_scripts', function() {
-                    wp_deregister_script( 'jquery' );
-                    wp_deregister_script( 'wp-embed' );
-                });
-            }
+//            private function dequeue_js() {
+  //              add_action( 'wp_enqueue_scripts', function() {
+    //                wp_deregister_script( 'jquery' );
+      //              wp_deregister_script( 'wp-embed' );
+        //        });
+          //  }
 
             private function enqueue_css() {
 
@@ -67,6 +59,7 @@
 
             }
 
+            /*
             private function enqueue_js() {
 
                 add_action( 'wp_enqueue_scripts', function() {
@@ -116,6 +109,7 @@
                 }, 10, 3 );
 
             }
+            */
 
         }
 
