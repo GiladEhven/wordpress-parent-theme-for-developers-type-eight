@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default.php' );
+    require_once( __DIR__ . '/../default.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'TIE_Partial' ) ) {
 

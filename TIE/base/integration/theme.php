@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( '../integration.php' );
+    require_once( __DIR__ . '/../integration.php' );
 
     if ( ! class_exists( __NAMESPACE__ . 'TIE_Theme' ) ) {
 
