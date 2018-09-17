@@ -12,8 +12,6 @@
 
             public function __construct() {
 
-                $this->get_view( basename( __FILE__ ) );
-
                 parent::__construct();
 
             }
@@ -24,28 +22,16 @@
 
 
 
-    $template_index = new Template_Index();
+    $index = new Template_Index();
 
 
 
     // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $template_index->set_template_data_for_view(array(
+    $index->set_data(array(
         'one' => 'first',
         'two' => 'second',
     ));
 
 
 
-    $template_index->view_template();
-
-
-
-    // get_header(); ?>
-
-                <div id="main">
-
-                    <?php // $template_index = new Template_Index(); ?>
-
-                </div><!-- / # main -->
-
-    <?php // get_footer();
+    $index->get_shell( basename( __FILE__ ), 'Sitewide' );

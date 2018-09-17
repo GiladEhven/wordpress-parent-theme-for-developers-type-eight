@@ -80,8 +80,7 @@
 
                                         gilad_header_begin();
 
-                                    //  $template_header = new Template_Header();
-                    //                $view_header = new View_Header( $this->packaged_data_for_fragment );
+                                        // TODO: IMPLEMENT HEADER VIEW HERE
 
                                         gilad_header_end();
 

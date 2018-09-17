@@ -10,19 +10,19 @@
 
         abstract class TIE_Template extends TIE_Public {
 
-//          protected $template_data_for_view = array( 'error' => 'NO DATA PUSHED FROM TEMPLATE!' );
-
-            protected $template_data_for_view = array
+            protected $data = array
             (
 
                 'error' => array
                 (
                     'code'        => 'E0101',
                     'message'     => 'NO DATA PUSHED FROM TEMPLATE!',
-                    'description' => 'Template [file] class has been instantiated, but no data captured or pushed in array via [set_template_data_for_view] to the [template_data_for_view] property. This means that the object representing this WordPress Template (type/role) contains no content for display on the front end. Note also that this error data is generated within the same [template_data_for_view] property in the form of default field value (overwritten/replaced automatically upon data push from template into [set_template_data_for_view] instance method.',
-                    'resolution'  => 'At template file, any time after template class instantiation, call [set_template_data_for_view] and pass array of content data.',
+                    'description' => 'Template [file] class has been instantiated, but no data captured or pushed in array via [set_data] to the [data] property. This means that the object representing this WordPress Template (type/role) contains no content for display on the front end. Note also that this error data is generated within the same [data] property in the form of default field value (overwritten/replaced automatically upon data push from template into [set_data] instance method.',
+                    'resolution'  => 'At template file, any time after template class instantiation, call [set_data] and pass array of content data.',
                 )
             );
+
+            protected $view;
 
             public function __construct() {
 
@@ -30,38 +30,32 @@
 
             }
 
-            public function get_template_data_for_view() {
+            public function get_shell( $view, $shell ) {
 
-                return $this->template_data_for_view;
+                $public_shell = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
+                $tie_shell    = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
 
-            }
-
-            public function get_view( $view ) {
-
-                $public_view = get_stylesheet_directory() . '/public/views/class-view-' . $view;
-                $tie_view    = GILAD_TIE . '/app/views/class-view-' . $view;
-
-                if ( file_exists( $public_view ) ) {
-                    require_once( $public_view );
-                } elseif ( file_exists( $tie_view ) ) {
-                    require_once( $tie_view );
+                if ( file_exists( $public_shell ) ) {
+                    require_once( $public_shell );
                 } else {
-
-                    // TODO: IMPLEMENT ERROR ARRAY
-
+                    require_once( $tie_shell );
                 }
 
-            }
+                $shell_class = __NAMESPACE__ . '\Shell_' . $shell;
 
-            public function set_template_data_for_view( $data ) {
-
-                $this->template_data_for_view = $data;
+                $shell_object = new $shell_class( $view );
 
             }
 
-            public function view_template() {
-get_header();
-                print_r( $this->template_data_for_view );
+            public function get_data() {
+
+                return $this->data;
+
+            }
+
+            public function set_data( $data ) {
+
+                $this->data = $data;
 
             }
 
