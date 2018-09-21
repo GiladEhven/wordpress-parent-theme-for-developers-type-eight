@@ -10,36 +10,9 @@
 
         class Template_Archive extends TIE_List {
 
-//          private $requested_resource;
-
-            //  GET META
-
-            //  GET REFERRER
-
-            //  PACKAGE DATA: CONTENT, EXCERPT, FIELDS, GET's
-
-//          public static $object_counter = 0;
-
             public function __construct() {
 
-//          	$data = $this->package_data_for_view();
-
-//              require_once( get_stylesheet_directory() . '/public/php/views/class-view-archive.php' );
-//              $view_archive = new View_Archive( $data );
-
-//              self::$object_counter++;
-
                 parent::__construct();
-
-          }
-
-            //  ----------------------------  MISSION LOGIC  ----------------------------  //
-
-            protected function package_data_for_view() {
-
-                	$data = array();
-
-                	return $data;
 
             }
 
@@ -47,18 +20,20 @@
 
     }
 
-    get_header(); ?>
 
-                <div id="main">
 
-                	THIS IS A GENERIC ARCHIVE PAGE!
+    $archive = new Template_Archive();
 
-                    <?php
 
-                        $template_archive = new Template_Archive();
 
-                    ?>
+    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
+    $archive->set_data(array(
+        'template' => 'archive.php',
+        'class'    => 'Template_Archive',
+        'type'     => 'List',
+        'parent'   => 'TIE_List',
+    ));
 
-                </div><!-- / # main -->
 
-    <?php get_footer();
+
+    $archive->get_shell( basename( __FILE__ ), 'Sitewide' );
