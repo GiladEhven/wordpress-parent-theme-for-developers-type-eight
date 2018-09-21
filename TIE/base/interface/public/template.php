@@ -58,6 +58,22 @@
 
             }
 
+            protected function render( $variable ) {
+
+                //  TODO: Account for captured sub-arrays no longer called $data[]...
+
+                if ( isset( $this->packaged_data[$variable] ) ) {
+
+                    echo $this->packaged_data[$variable];
+
+                } else {
+
+                    echo '<span class="gilad-render-none">Not Found: [ ' . $variable . ' ]</span>';
+
+                }
+
+            }
+
             //  UGLY!
 
             //  -------------------------------------  BEGIN AND END : TEMPLATES  -------------------------------------  //
