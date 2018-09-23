@@ -61,6 +61,32 @@
 
             }
 
+            public function requirements() {
+
+                // TYPE     PRIMARY (MUST EXIST)         SECONDARIES (IF EXISTS)    RECOMMENDATIONS: Performance, Security, SEO
+
+                // One      None: Mono Object            ACF
+
+                // Two      None: No Shells, No Views    ACF
+
+                // Three    None: Native API's           ACF
+
+                // Four     None: Tavnit                 ACF
+
+                // Five     Timber                       ACF
+
+                // Six      ACF
+
+                // Seven    Beaver Builder               ACF
+
+                // Eight    None: Strings                ACF
+
+                // Nine     Gutenberg                    ACF
+
+                // Ten      ?
+
+            }
+
         }
 
     }
