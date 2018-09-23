@@ -12,6 +12,8 @@
 
             public function __construct() {
 
+                parent::__construct();
+
         	  	$this->build_header();
 
             }
