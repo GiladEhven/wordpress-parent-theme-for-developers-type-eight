@@ -16,6 +16,48 @@
 
             }
 
+            public function build_footer() {
+
+                $this->gilad_main_end();
+
+                ?>
+
+                                </main>
+
+                                <footer>
+
+                                    <?php
+
+                                        $this->gilad_footer_begin();
+
+                                        //
+
+                                        $this->gilad_footer_end();
+
+                                    ?>
+
+                                </footer>
+
+                                <?php $this->gilad_wrapper_end(); ?>
+
+                            </div>
+
+                            <?php
+
+                                $this->gilad_body_end();
+
+                                wp_footer();
+
+                            ?>
+
+                        </body>
+
+                    </html>
+
+                <?php
+
+            }
+
             public function build_header() {
 
                 ?>
