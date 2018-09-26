@@ -126,8 +126,35 @@
 
             }
 
+            protected function load_document_resources( $ids, $resource ) {
 
+                // $ids  = array()
 
+                // $resource = 'css', 'js', or 'both'
+
+            }
+
+            protected function load_main_resources( $resource ) {
+
+                // $resource = 'css', 'js', or 'both'
+
+            }
+
+            protected function load_template_resources( $template, $resource ) {
+
+                // Can we get $template automatically instead of passing it?
+
+                // $resource = 'css', 'js', or 'both'
+
+            }
+
+            protected function load_type_resources( $type, $resource ) {
+
+                // Can we get $type automatically instead of passing it?
+
+                // $resource = 'css', 'js', or 'both'
+
+            }
 
             protected function render( $variable ) {
 
