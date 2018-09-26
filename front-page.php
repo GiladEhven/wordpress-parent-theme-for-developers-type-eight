@@ -14,6 +14,9 @@
 
                 parent::__construct();
 
+                    $this->cleanup_scripts();
+                    $this->update_jquery( '3.3.1', 'slim' );
+
             }
 
         }

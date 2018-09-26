@@ -12,54 +12,20 @@
 
             public function __construct() {
 
-//              $this->set_theme_descriptors();
                 $this->set_text_domain();
                 $this->set_theme_version();
 
-//              $this->dequeue_css();
                 $this->dequeue_js();
-//              $this->enqueue_css();
                 $this->enqueue_js();
 
             }
 
-            //  -------------------------  GETTERS AND SETTERS  -------------------------  //
-
-            //  ----------------------------  MISSION LOGIC  ----------------------------  //
-
-//            private function dequeue_css() {
-  //          }
-
             private function dequeue_js() {
-                add_action( 'wp_enqueue_scripts', function() {
-                    wp_deregister_script( 'jquery' );
-                    wp_deregister_script( 'wp-embed' );
-                });
+//              add_action( 'wp_enqueue_scripts', function() {
+      //            wp_deregister_script( 'jquery' );
+//                  wp_deregister_script( 'wp-embed' );
+//              });
             }
-
-            /*
-            private function enqueue_css() {
-
-                add_action( 'wp_enqueue_scripts', function() {
-
-                    if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
-                        wp_enqueue_style( 'localhost-bootstrap',        get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css',        array(), $this->theme_version, 'all' );
-                        wp_enqueue_style( 'localhost-font-awesome',     get_stylesheet_directory_uri() . '/public/styles/localhost/font-awesome.css',     array(), $this->theme_version, 'all' );
-                    } else {
-                        wp_enqueue_style( 'bootstrap',                  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css',    array(), $this->theme_version, 'all' );
-                        wp_enqueue_style( 'font-awesome',               'https://use.fontawesome.com/releases/v5.1.1/css/all.css',                     array(), $this->theme_version, 'all' );
-                    }
-
-                    wp_enqueue_style( $this->text_domain . '-main',   get_stylesheet_directory_uri() . '/public/styles/main.css', array(), $this->theme_version, 'all' );
-
-                    if ( strtolower( GILAD_ENVIRONMENT ) == 'dev' ) {
-                        wp_enqueue_style( $this->text_domain . '-design', get_stylesheet_directory_uri() . '/public/styles/design.css', array(), $this->theme_version, 'all' );
-                    }
-
-                });
-
-            }
-            */
 
             private function enqueue_js() {
 
@@ -110,6 +76,13 @@
                 }, 10, 3 );
 
             }
+
+
+
+
+
+
+
 
         }
 

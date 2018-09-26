@@ -51,10 +51,8 @@
 
                 } else {
 
-                    require_once( get_stylesheet_directory() . '/public/loaders/class-public-scripts.php' );
                     require_once( get_stylesheet_directory() . '/public/loaders/class-public-styles.php' );
 
-                    $public_scripts   = new Public_Scripts;
                     $public_styles    = new Public_Styles;
 
                 }

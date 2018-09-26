@@ -27,6 +27,8 @@
 
                 parent::__construct();
 
+        //      $this->cleanup_scripts();
+
             }
 
             public function get_data() {
@@ -58,6 +60,67 @@
 
             }
 
+            public function cleanup_scripts() {
+
+                add_action( 'wp_enqueue_scripts', function() {
+                    wp_deregister_script( 'wp-embed' );
+                });
+
+            }
+
+            protected function enable_bootstrap( $version, $resources ) {
+
+                add_action( 'wp_enqueue_scripts', function() use( $version, $flavor ) {
+                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT', true );
+                    wp_enqueue_script( 'jquery' );
+                });
+
+                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $flavor ) {
+
+                    if ( $handle == 'jquery' ) {
+
+                        $payload = 0;
+
+                        if (   $version == '1.12.4' )                             $payload = 1;
+                        if (   $version == '2.2.4'  )                             $payload = 2;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == '' ) )     $payload = 3;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 4;
+
+                        switch ( $payload ) {
+
+                            case 1:
+                                    $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=';
+                                    break;
+
+                            case 2:
+                                    $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=';
+                                    break;
+
+                            case 3:
+                                    $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=';
+                                    break;
+
+                            case 4:
+                                    $integrity   = 'sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=';
+                                    break;
+
+                            default:
+                                    $integrity   = 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo';
+                                    break;
+
+                        }
+
+                        return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                    }
+
+                }, 10, 3 );
+
+            }
+
+
+
+
             protected function render( $variable ) {
 
                 //  TODO: Account for captured sub-arrays no longer called $data[]...
@@ -71,6 +134,60 @@
                     echo '<span class="gilad-render-none">Not Found: [ ' . $variable . ' ]</span>';
 
                 }
+
+            }
+
+            protected function update_jquery( $version, $flavor ) {
+
+                add_action( 'wp_enqueue_scripts', function() use( $version, $flavor ) {
+
+                    if ( $flavor ) $flavor = $flavor . '.';
+
+                    wp_deregister_script( 'jquery' );
+                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT', true );
+                    wp_enqueue_script( 'jquery' );
+                });
+
+                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $flavor ) {
+
+                    if ( $handle == 'jquery' ) {
+
+                        $payload = 0;
+
+                        if (   $version == '1.12.4' )                             $payload = 1;
+                        if (   $version == '2.2.4'  )                             $payload = 2;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == '' ) )     $payload = 3;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 4;
+
+                        switch ( $payload ) {
+
+                            case 1:
+                                    $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=';
+                                    break;
+
+                            case 2:
+                                    $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=';
+                                    break;
+
+                            case 3:
+                                    $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=';
+                                    break;
+
+                            case 4:
+                                    $integrity   = 'sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=';
+                                    break;
+
+                            default:
+                                    $integrity   = 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo';
+                                    break;
+
+                        }
+
+                        return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                    }
+
+                }, 10, 3 );
 
             }
 
