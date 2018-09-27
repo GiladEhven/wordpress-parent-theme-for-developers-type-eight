@@ -18,7 +18,7 @@
 
                 $this->dequeue_css();
 //              $this->dequeue_js();
-                $this->enqueue_css();
+        //      $this->enqueue_css();
 //              $this->enqueue_js();
 
             }

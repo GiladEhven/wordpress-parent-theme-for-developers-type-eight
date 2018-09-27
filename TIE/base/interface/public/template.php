@@ -76,13 +76,58 @@
 
             }
 
-            protected function enable_bootstrap( $version, $resources ) {
+            protected function enable_bootstrap( $version, $resource ) {
 
-                add_action( 'wp_enqueue_scripts', function() use( $version, $flavor ) {
-                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT', true );
-                    wp_enqueue_script( 'jquery' );
+                switch ( $version ) {
+
+                    case '4.1.2':    $popper = '1.14.3';    break;
+
+                    default:         $popper = '1.14.3';    break;
+
+                }
+
+                add_action( 'wp_enqueue_scripts', function() use( $version, $resource ) {
+
+                    if ( ( $resource == 'both' ) || ( $resource == 'css' ) ) {
+
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+                            $dependencies = array();
+                            $for          = 'all';
+                            $handle       = 'localhost-bootstrap';
+                            $source       = get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css';
+                            $version      = 'CURRENT';
+                        } else {
+                            $dependencies = array();
+                            $for          = 'all';
+                            $handle       = 'bootstrap';
+                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/css/bootstrap.min.css';
+                            $version      = 'CURRENT';
+                        }
+
+                        wp_enqueue_style( $handle, $source, $dependencies, $version, $for );
+                    }
+
+                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
+
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+                            $dependencies = array();
+                            $footer       = true;
+                            $handle       = 'localhost-bootstrap';
+                            $source       = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
+                            $version      = 'CURRENT';
+                        } else {
+                            $dependencies = array();
+                            $footer       = false;
+                            $handle       = 'bootstrap-x';
+                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
+                            $version      = 'CURRENT';
+                        }
+
+                        wp_enqueue_script( $handle, $source, $dependencies, $version, $footer );
+                    }
+
                 });
-
+/*
                 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $flavor ) {
 
                     if ( $handle == 'jquery' ) {
@@ -123,7 +168,7 @@
                     }
 
                 }, 10, 3 );
-
+*/
             }
 
             protected function load_document_resources( $ids, $resource ) {

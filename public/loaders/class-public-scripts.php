@@ -26,7 +26,7 @@
 //                  wp_deregister_script( 'wp-embed' );
 //              });
             }
-
+/*
             private function enqueue_js() {
 
                 add_action( 'wp_enqueue_scripts', function() {
@@ -76,7 +76,7 @@
                 }, 10, 3 );
 
             }
-
+*/
 
 
 

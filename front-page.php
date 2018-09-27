@@ -16,6 +16,7 @@
 
                     $this->cleanup();
                     $this->update_jquery( '3.3.1', 'slim' );
+                    $this->enable_bootstrap( '4.1.2', 'js' );
 
             }
 
