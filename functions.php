@@ -49,6 +49,68 @@
                     $theme_navigation = new Theme_Navigation;
                     $theme_support    = new Theme_Support;
 
+                    // ---------------------------------------------------------------------------------------- //
+                    // -------------------------- TODO: MIGRATE INWARD (MOST TO TIE) -------------------------- //
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_filter( 'admin_footer_text', function() {
+
+                        // TODO: Customize messages for different user caps (and user ID's?)
+
+                        // TODO: Include default message + passable and/or key settable
+
+                        echo 'WordPress Theme Starter Type Eight';
+                    });
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'admin_menu', function() {
+
+                        global $menu;
+
+                        $restricted = array
+                        (
+                    //      __('Dashboard'),
+                    //      __('Posts'),
+                    //      __('Media'),
+                    //      __('Links'),
+                    //      __('Pages'),
+                    //      __('Appearance'),
+                    //      __('Tools'),
+                    //      __('Users'),
+                    //      __('Settings'),
+                    //      __('Comments'),
+                    //      __('Plugins')
+                        );
+
+                        end ($menu); 
+                         
+                        while ( prev( $menu ) ) {
+
+                            $value = explode( ' ', $menu[key($menu)][0] ); 
+
+                            if( in_array( $value[0] != NULL?$value[0]:"" , $restricted ) ) {
+
+                                unset($menu[key($menu)]);
+
+                            }
+
+                        } 
+
+                    });
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'admin_menu', function() {
+                //      global $submenu;
+                //      unset( $submenu['index.php'][10] );           // Updates
+                //      unset( $submenu['themes.php'][5] );           // Themes
+                //      unset( $submenu['options-general.php'][15] ); // Writing
+                //      unset( $submenu['options-general.php'][25] ); // Discussion
+                    }); 
+
+                    // ---------------------------------------------------------------------------------------- //
+
                 } else {
 
                     require_once( get_stylesheet_directory() . '/public/loaders/class-public-styles.php' );
