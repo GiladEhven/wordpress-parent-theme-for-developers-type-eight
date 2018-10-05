@@ -107,7 +107,130 @@
                 //      unset( $submenu['themes.php'][5] );           // Themes
                 //      unset( $submenu['options-general.php'][15] ); // Writing
                 //      unset( $submenu['options-general.php'][25] ); // Discussion
+                    });
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'admin_menu', function() {
+
+                        // TODO: Check user caps and/or ID/s
+                        // TODO: Invoke/enable/disable via key? Else?
+
+                        remove_action( 'admin_notices', 'update_nag', 3 );
+                    });
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'load-page-new.php', 'add_help_content' );
+                    add_action( 'load-page.php', 'add_help_content' );
+
+                    function add_help_content() { 
+
+                        add_filter('contextual_help','custom_page_help'); 
+
+                    }
+
+                    function custom_page_help( $help ) { 
+
+                        // Keep/echo existing help content:
+                        echo $help; 
+
+                        // Add/echo new/custom content
+                        echo "<h5>Custom Help Content</h5>";
+                        echo "<p>This is custom help content...</p>"; 
+
+                        // TODO: Replace "manual" echo with check for file/view/content file, and require_once if found
+                        // TODO: Color help tab
+
+                    }
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    function the_breadcrumb() {
+
+                        echo '<ul id="crumbs">';
+
+                        if (!is_home()) {
+
+                            echo '<li><a href="';
+                            echo get_option('home');
+                            echo '">';
+                            echo 'Home';
+                            echo "</a></li>";
+
+                            if (is_category() || is_single()) {
+
+                                echo '<li>';
+                                the_category(' </li><li> ');
+
+                                if (is_single()) {
+
+                                    echo "</li><li>";
+                                    the_title();
+                                    echo '</li>';
+
+                                    }
+
+                            } elseif ( is_page() ) {
+
+                                echo '<li>';
+                                echo the_title();
+                                echo '</li>';
+
+                            }
+
+                        }
+                     
+                        elseif ( is_tag() )    { single_tag_title(); }
+
+                        elseif ( is_day() )    { echo "<li>Archive for "; the_time('F jS, Y'); echo '</li>'; }
+
+                        elseif ( is_month() )  { echo "<li>Archive for "; the_time('F, Y');    echo '</li>'; }
+
+                        elseif ( is_year() )   { echo "<li>Archive for "; the_time('Y');       echo '</li>'; }
+
+                        elseif ( is_author() ) { echo "<li>Author Archive"; echo'</li>'; }
+
+                        elseif ( isset($_GET['paged']) &amp;&amp; !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>'; }
+
+                        elseif ( is_search())  { echo"<li>Search Results"; echo'</li>'; }
+
+                        echo '</ul>';
+
+                    }
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'admin_print_styles', functions() {
+                        echo '
+                        <style type="text/css"> 
+                            #editorcontainer textarea#content {
+                                font-family: Monaco, Consolas, \"Andale Mono\", \"Dejavu Sans Mono\", monospace;
+                                font-size: 14px;
+                                color:#333;
+                            }
+                        </style>
+                        ';
+                    });
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    add_action( 'publish_post', function() {
+
+                        global $post;
+                        $title = $post->post_title; 
+                         
+                        if (str_word_count( $title ) >= 10 ) {
+                            wp_die( __( 'Error: Post title too long! Maximum word count exceeded!' ) ); 
+                        }
+
                     }); 
+
+                    // ---------------------------------------------------------------------------------------- //
+
+                    // ALSO: GWP
+
+                    // ALSO: http://www.wprecipes.com/how-to-enlight-searched-text-in-search-results
 
                     // ---------------------------------------------------------------------------------------- //
 
