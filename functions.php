@@ -191,7 +191,7 @@
 
                         elseif ( is_author() ) { echo "<li>Author Archive"; echo'</li>'; }
 
-                        elseif ( isset($_GET['paged']) &amp;&amp; !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>'; }
+                        elseif ( isset($_GET['paged']) && !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>'; }
 
                         elseif ( is_search())  { echo"<li>Search Results"; echo'</li>'; }
 
@@ -201,7 +201,7 @@
 
                     // ---------------------------------------------------------------------------------------- //
 
-                    add_action( 'admin_print_styles', functions() {
+                    add_action( 'admin_print_styles', function() {
                         echo '
                         <style type="text/css"> 
                             #editorcontainer textarea#content {
