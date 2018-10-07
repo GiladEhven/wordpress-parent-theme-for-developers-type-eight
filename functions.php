@@ -244,9 +244,7 @@
 
                 } else {
 
-                    require_once( get_stylesheet_directory() . '/public/loaders/class-public-styles.php' );
-
-                    $public_styles    = new Public_Styles;
+                    // IF IS NOT ADMIN
 
                 }
 
