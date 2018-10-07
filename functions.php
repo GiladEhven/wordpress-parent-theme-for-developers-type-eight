@@ -246,25 +246,25 @@
 
             public function requirements() {
 
-                // TYPE     PRIMARY (MUST EXIST)         SECONDARIES (IF EXISTS)    RECOMMENDATIONS: Performance, Security, SEO
+                // TYPE     MANDATE                 PRIMARY (MUST EXIST)         SECONDARIES (IF EXISTS)    RECOMMENDATIONS: Performance, Security, SEO
 
-                // One      None: Mono Object            ACF
+                // One      Mono Object             None                         ACF
 
-                // Two      None: No Shells, No Views    ACF
+                // Two      No Shells, No Views     None                         ACF
 
-                // Three    None: Native API's           ACF
+                // Three    Native API's            None                         ACF
 
-                // Four     None: Tavnit                 ACF
+                // Four     Tavnit                  None                         ACF
 
-                // Five     Timber                       ACF
+                // Five     Timber                  Timber                       ACF
 
-                // Six      ACF
+                // Six      ACF Page Builder        ACF
 
-                // Seven    Beaver Builder               ACF
+                // Seven    BB                      Beaver Builder               ACF
 
-                // Eight    None: Strings                ACF
+                // Eight    Strings                 None                         ACF
 
-                // Nine     Gutenberg                    ACF
+                // Nine     Gutenberg               Gutenberg                    ACF
 
                 // Ten      ?
 

@@ -50,7 +50,9 @@
 
                 $shell_class = __NAMESPACE__ . '\Shell_' . $shell;
 
+                get_header();
                 $shell_object = new $shell_class( $view );
+                get_footer();
 
             }
 
