@@ -268,7 +268,7 @@
 
                         if (   $version == '1.12.4' )                             $payload = 1;
                         if (   $version == '2.2.4'  )                             $payload = 2;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == '' ) )     $payload = 3;
+                        if (   $version == '3.3.1'  )                             $payload = 3;
                         if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 4;
 
                         switch ( $payload ) {
@@ -286,11 +286,11 @@
                                     break;
 
                             case 4:
-                                    $integrity   = 'sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=';
+                                    $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=';
                                     break;
 
                             default:
-                                    $integrity   = 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo';
+                                    $integrity   = '';
                                     break;
 
                         }
