@@ -153,6 +153,44 @@
                     }
 
                 });
+/*
+                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version ) {
+
+                    $integrity = '';
+                    $payload = 0;
+
+                    if ( $handle == 'jquery' ) {
+
+                        if (   $version == '1.12.4' )                             $payload = 201;
+                        if (   $version == '2.2.4'  )                             $payload = 202;
+                        if (   $version == '3.3.1'  )                             $payload = 203;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 204;
+
+                        switch ( $payload ) {
+
+                            case 201: $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='; break;
+                            case 202: $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='; break;
+                            case 203: $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='; break;
+                            case 204: $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='; break;
+                            default:  $integrity   = '';
+
+                        }
+
+                    }
+
+                    return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                }, 10, 3 );
+*/
+
+
+
+
+
+
+
+
+
 
             }
 
@@ -236,9 +274,11 @@
 
                         }
 
+                        $tag = '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
                     }
 
-                    return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+                    return $tag;
 
                 }, 10, 3 );
 
