@@ -34,9 +34,6 @@
 
 
 
-
-
-
     if ( ! class_exists( __NAMESPACE__ . 'Theme_Core' ) ) {
 
         class Theme_Core {
@@ -45,17 +42,17 @@
 
                 if ( is_admin() ) {
 
-                    require_once( get_stylesheet_directory() . '/admin/php/loaders/class-admin-resources.php' );
-                    require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-admin.php' );
-                    require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-media.php' );
-                    require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-navigation.php' );
-                    require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-support.php' );
+            //      require_once( get_stylesheet_directory() . '/admin/php/loaders/class-admin-resources.php' );
+            //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-admin.php' );
+            //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-media.php' );
+            //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-navigation.php' );
+            //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-support.php' );
 
-                    $admin_resources  = new Admin_Resources;
-                    $theme_admin      = new Theme_Admin;
-                    $theme_media      = new Theme_Media;
-                    $theme_navigation = new Theme_Navigation;
-                    $theme_support    = new Theme_Support;
+            //      $admin_resources  = new Admin_Resources;
+            //      $theme_admin      = new Theme_Admin;
+            //      $theme_media      = new Theme_Media;
+            //      $theme_navigation = new Theme_Navigation;
+            //      $theme_support    = new Theme_Support;
 
                     // ---------------------------------------------------------------------------------------- //
                     // -------------------------- TODO: MIGRATE INWARD (MOST TO TIE) -------------------------- //

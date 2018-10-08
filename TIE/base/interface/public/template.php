@@ -37,7 +37,7 @@
 
             }
 
-            public function get_shell( $view, $shell ) {
+            public function build_and_render( $view, $shell ) {
 
                 $public_shell = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
                 $tie_shell    = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
@@ -108,7 +108,7 @@
 
             }
 
-            protected function enable_bootstrap( $version, $resource ) {
+            public function enable_bootstrap( $version, $resource ) {
 
                 switch ( $version ) {
 
@@ -120,6 +120,21 @@
 
                 add_action( 'wp_enqueue_scripts', function() use( $version, $resource ) {
 
+                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
+
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+                            $dependencies = array();
+                            $handle       = 'localhost-bootstrap';
+                            $source       = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
+                        } else {
+                            $dependencies = array();
+                            $handle       = 'bootstrapix';
+                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
+                        }
+
+                        wp_enqueue_script( $handle, $source, $dependencies );
+                    }
+
                     if ( ( $resource == 'both' ) || ( $resource == 'css' ) ) {
 
                         if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
@@ -127,80 +142,18 @@
                             $for          = 'all';
                             $handle       = 'localhost-bootstrap';
                             $source       = get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css';
-                            $version      = 'CURRENT';
                         } else {
                             $dependencies = array();
-                            $for          = 'all';
                             $handle       = 'bootstrap';
                             $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/css/bootstrap.min.css';
-                            $version      = 'CURRENT';
                         }
 
-                        wp_enqueue_style( $handle, $source, $dependencies, $version, $for );
-                    }
+                        wp_enqueue_style( $handle, $source, $dependencies );
 
-                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
-
-                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
-                            $dependencies = array();
-                            $footer       = true;
-                            $handle       = 'localhost-bootstrap';
-                            $source       = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
-                            $version      = 'CURRENT';
-                        } else {
-                            $dependencies = array();
-                            $footer       = false;
-                            $handle       = 'bootstrap-x';
-                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
-                            $version      = 'CURRENT';
-                        }
-
-                        wp_enqueue_script( $handle, $source, $dependencies, $version, $footer );
                     }
 
                 });
-/*
-                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $flavor ) {
 
-                    if ( $handle == 'jquery' ) {
-
-                        $payload = 0;
-
-                        if (   $version == '1.12.4' )                             $payload = 1;
-                        if (   $version == '2.2.4'  )                             $payload = 2;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == '' ) )     $payload = 3;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 4;
-
-                        switch ( $payload ) {
-
-                            case 1:
-                                    $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=';
-                                    break;
-
-                            case 2:
-                                    $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=';
-                                    break;
-
-                            case 3:
-                                    $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=';
-                                    break;
-
-                            case 4:
-                                    $integrity   = 'sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=';
-                                    break;
-
-                            default:
-                                    $integrity   = 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo';
-                                    break;
-
-                        }
-
-                        return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
-
-                    }
-
-                }, 10, 3 );
-*/
             }
 
             protected function load_document_resources( $ids, $resource ) {
@@ -256,48 +209,36 @@
                     if ( $flavor ) $flavor = $flavor . '.';
 
                     wp_deregister_script( 'jquery' );
-                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT', true );
+                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT-NEW', true );
                     wp_enqueue_script( 'jquery' );
+
                 });
 
                 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $flavor ) {
 
+                    $integrity = '';
+                    $payload = 0;
+
                     if ( $handle == 'jquery' ) {
 
-                        $payload = 0;
-
-                        if (   $version == '1.12.4' )                             $payload = 1;
-                        if (   $version == '2.2.4'  )                             $payload = 2;
-                        if (   $version == '3.3.1'  )                             $payload = 3;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 4;
+                        if (   $version == '1.12.4' )                             $payload = 201;
+                        if (   $version == '2.2.4'  )                             $payload = 202;
+                        if (   $version == '3.3.1'  )                             $payload = 203;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 204;
 
                         switch ( $payload ) {
 
-                            case 1:
-                                    $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=';
-                                    break;
-
-                            case 2:
-                                    $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=';
-                                    break;
-
-                            case 3:
-                                    $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=';
-                                    break;
-
-                            case 4:
-                                    $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=';
-                                    break;
-
-                            default:
-                                    $integrity   = '';
-                                    break;
+                            case 201: $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='; break;
+                            case 202: $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='; break;
+                            case 203: $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='; break;
+                            case 204: $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='; break;
+                            default:  $integrity   = '';
 
                         }
 
-                        return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
-
                     }
+
+                    return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
 
                 }, 10, 3 );
 

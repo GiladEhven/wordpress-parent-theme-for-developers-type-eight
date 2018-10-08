@@ -14,9 +14,15 @@
 
                 parent::__construct();
 
+                    // HOUSEKEEPING FIRST...
                     $this->cleanup();
+
+                    // THEN RESOURCES...
                     $this->update_jquery( '3.3.1', 'slim' );
-                    $this->enable_bootstrap( '4.1.2', 'js' );
+                    $this->enable_bootstrap( '4.1.2', 'both' );
+
+                    // AND THEN BUILD AND RENDER...
+                    $this->build_and_render( basename( __FILE__ ), 'Sitewide' );
 
             }
 
@@ -37,7 +43,3 @@
         'type'     => 'Front',
         'parent'   => 'TIE_Front',
     ));
-
-
-
-    $front_page->get_shell( basename( __FILE__ ), 'Sitewide' );
