@@ -4,11 +4,11 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( __DIR__ . '/../admin.php' );
+    require_once( __DIR__ . '/../default.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'TIE_Editor' ) ) {
+    if ( ! class_exists( __NAMESPACE__ . 'TIE_List' ) ) {
 
-        abstract class TIE_Editor extends TIE_Admin {
+        abstract class TIE_List extends TIE_Default {
 
             public function __construct() {
 
