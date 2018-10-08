@@ -19,7 +19,7 @@
 
                     // THEN RESOURCES...
                     $this->update_jquery( '3.3.1', 'slim' );
-                    $this->enable_bootstrap( '4.1.2', 'both' );
+                    $this->enable_bootstrap( '4.1.3', 'both' );
 
                     // AND THEN BUILD AND RENDER...
                     $this->build_and_render( basename( __FILE__ ), 'Sitewide' );

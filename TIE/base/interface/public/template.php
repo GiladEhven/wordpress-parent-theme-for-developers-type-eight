@@ -110,30 +110,18 @@
 
             public function enable_bootstrap( $version, $resource ) {
 
+                $popper = 0;
+
                 switch ( $version ) {
 
-                    case '4.1.2':    $popper = '1.14.3';    break;
+                    case '4.1.3':    $popper = '1.14.3';    break;
+                    case '4.1.3':    $popper = '1.14.3';    break;
 
                     default:         $popper = '1.14.3';    break;
 
                 }
 
-                add_action( 'wp_enqueue_scripts', function() use( $version, $resource ) {
-
-                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
-
-                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
-                            $dependencies = array();
-                            $handle       = 'localhost-bootstrap';
-                            $source       = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
-                        } else {
-                            $dependencies = array();
-                            $handle       = 'bootstrapix';
-                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
-                        }
-
-                        wp_enqueue_script( $handle, $source, $dependencies );
-                    }
+                add_action( 'wp_enqueue_scripts', function() use( $version, $resource, $popper ) {
 
                     if ( ( $resource == 'both' ) || ( $resource == 'css' ) ) {
 
@@ -152,45 +140,76 @@
 
                     }
 
-                });
-/*
-                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version ) {
+                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
 
-                    $integrity = '';
-                    $payload = 0;
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
 
-                    if ( $handle == 'jquery' ) {
+                            $deps_bootstrap   = array( 'localhost-jquery', 'localhost-popper' );
+                            $handle_bootstrap = 'localhost-bootstrap';
+                            $source_bootstrap = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
 
-                        if (   $version == '1.12.4' )                             $payload = 201;
-                        if (   $version == '2.2.4'  )                             $payload = 202;
-                        if (   $version == '3.3.1'  )                             $payload = 203;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 204;
+                            $deps_popper      = array( 'localhost-jquery' );
+                            $handle_popper    = 'localhost-popper';
+                            $source_popper    = get_stylesheet_directory_uri() . '/public/scripts/localhost/popper.js';
 
-                        switch ( $payload ) {
+                        } else {
 
-                            case 201: $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='; break;
-                            case 202: $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='; break;
-                            case 203: $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='; break;
-                            case 204: $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='; break;
-                            default:  $integrity   = '';
+                            $deps_bootstrap   = array( 'jquery', 'popper' );
+                            $handle_bootstrap = 'bootstrap';
+                            $source_bootstrap = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
+
+                            $deps_popper      = array( 'jquery' );
+                            $handle_popper    = 'popper';
+                            $source_popper    = 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/' . $popper . '/umd/popper.min.js';
 
                         }
 
+                        wp_enqueue_script( $handle_bootstrap, $source_bootstrap, $deps_bootstrap );
+                        wp_enqueue_script( $handle_popper, $source_popper, $deps_popper );
                     }
 
-                    return '<script id="' . $handle . '" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+                });
+
+                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $popper ) {
+
+                    $integrity = '';
+                    $payload   = 0;
+
+                    if ( ( $handle == 'bootstrap' ) || ( $handle == 'popper' ) ) {
+
+                        if ( ( $handle == 'bootstrap' ) ) {
+
+                            if (   $version == '3.3.7' ) $payload = 101;
+                            if (   $version == '4.1.3' ) $payload = 102;
+
+                            switch ( $payload ) {
+
+                                case 101: $integrity = 'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'; break;
+                                case 102: $integrity = 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy'; break;
+                                default:  $integrity = '';
+
+                            }
+
+                        } elseif ( ( $handle == 'popper' ) ) {
+
+                            if (   $popper == '1.14.3' ) $payload = 201;
+
+                            switch ( $payload ) {
+
+                                case 201: $integrity = 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'; break;
+                                default:  $integrity = '';
+
+                            }
+
+                        }
+
+                        $tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                    }
+
+                    return $tag;
 
                 }, 10, 3 );
-*/
-
-
-
-
-
-
-
-
-
 
             }
 
@@ -259,17 +278,17 @@
 
                     if ( $handle == 'jquery' ) {
 
-                        if (   $version == '1.12.4' )                             $payload = 201;
-                        if (   $version == '2.2.4'  )                             $payload = 202;
-                        if (   $version == '3.3.1'  )                             $payload = 203;
-                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 204;
+                        if (   $version == '1.12.4' )                             $payload = 101;
+                        if (   $version == '2.2.4'  )                             $payload = 102;
+                        if (   $version == '3.3.1'  )                             $payload = 103;
+                        if ( ( $version == '3.3.1'  )  && ( $flavor == 'slim' ) ) $payload = 104;
 
                         switch ( $payload ) {
 
-                            case 201: $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='; break;
-                            case 202: $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='; break;
-                            case 203: $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='; break;
-                            case 204: $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='; break;
+                            case 101: $integrity   = 'sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ='; break;
+                            case 102: $integrity   = 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='; break;
+                            case 103: $integrity   = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='; break;
+                            case 104: $integrity   = 'sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='; break;
                             default:  $integrity   = '';
 
                         }
