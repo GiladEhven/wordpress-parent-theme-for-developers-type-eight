@@ -39,13 +39,16 @@
 
             public function build_and_render( $view, $shell ) {
 
-                $public_shell = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
-                $tie_shell    = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
+                $generic_shell = GILAD_TIE . '/app/shells/class-shell-sitewide.php';
+                $public_shell  = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
+                $tie_shell     = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
 
                 if ( file_exists( $public_shell ) ) {
                     require_once( $public_shell );
-                } else {
+                } elseif ( file_exists( $tie_shell ) ) {
                     require_once( $tie_shell );
+                } else {
+                    require_once( $generic_shell );
                 }
 
                 $shell_class = __NAMESPACE__ . '\Shell_' . $shell;
