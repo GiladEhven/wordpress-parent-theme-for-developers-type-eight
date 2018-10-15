@@ -34,14 +34,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $single->set_data(array(
+    $single->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'single.php',
         'class'    => 'Template_Single',
         'type'     => 'Document',
         'parent'   => 'TIE_Document',
     ));
-
-
-
-    $single->get_shell( basename( __FILE__ ), 'Sitewide' );

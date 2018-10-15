@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $attachment->set_data(array(
+    $attachment->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'attachment.php',
         'class'    => 'Template_Attachment',
         'type'     => 'Media',
         'parent'   => 'TIE_Media',
     ));
-
-
-
-    $attachment->get_shell( basename( __FILE__ ), 'Sitewide' );

@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $taxonomy->set_data(array(
+    $taxonomy->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'taxonomy.php',
         'class'    => 'Template_Taxonomy',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $taxonomy->get_shell( basename( __FILE__ ), 'Sitewide' );

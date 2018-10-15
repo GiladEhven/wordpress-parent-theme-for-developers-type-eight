@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $tag->set_data(array(
+    $tag->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'tag.php',
         'class'    => 'Template_Tag',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $tag->get_shell( basename( __FILE__ ), 'Sitewide' );

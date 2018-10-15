@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $author->set_data(array(
+    $author->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'author.php',
         'class'    => 'Template_Author',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $author->get_shell( basename( __FILE__ ), 'Sitewide' );

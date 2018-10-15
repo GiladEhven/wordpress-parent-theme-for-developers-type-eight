@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $page->set_data(array(
+    $page->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'page.php',
         'class'    => 'Template_Page',
         'type'     => 'Document',
         'parent'   => 'TIE_Document',
     ));
-
-
-
-    $page->get_shell( basename( __FILE__ ), 'Sitewide' );

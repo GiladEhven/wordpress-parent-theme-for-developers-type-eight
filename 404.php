@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $four_oh_four->set_data(array(
+    $four_oh_four->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => '404.php',
         'class'    => 'Template_404',
         'type'     => 'Error',
         'parent'   => 'TIE_Error',
     ));
-
-
-
-    $four_oh_four->get_shell( basename( __FILE__ ), 'Sitewide' );

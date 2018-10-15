@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $date->set_data(array(
+    $date->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'date.php',
         'class'    => 'Template_Date',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $date->get_shell( basename( __FILE__ ), 'Sitewide' );

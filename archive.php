@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $archive->set_data(array(
+    $archive->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'archive.php',
         'class'    => 'Template_Archive',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $archive->get_shell( basename( __FILE__ ), 'Sitewide' );

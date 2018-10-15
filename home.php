@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $home->set_data(array(
+    $home->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'home.php',
         'class'    => 'Template_Home',
         'type'     => 'Front',
         'parent'   => 'TIE_Front',
     ));
-
-
-
-    $home->get_shell( basename( __FILE__ ), 'Sitewide' );

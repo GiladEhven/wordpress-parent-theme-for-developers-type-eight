@@ -26,12 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $index->set_data(array(
-        'one' => 'first',
-        'two' => 'second',
+    $index->build_and_render( 'Sitewide', basename( __FILE__ ), array(
+        'template' => 'index.php',
+        'class'    => 'Template_Index',
+        'type'     => 'Front',
+        'parent'   => 'TIE_Front',
     ));
-
-
-
-    $index->get_shell( basename( __FILE__ ), 'Sitewide' );

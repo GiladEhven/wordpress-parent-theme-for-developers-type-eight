@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $category->set_data(array(
+    $category->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'category.php',
         'class'    => 'Template_Category',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $category->get_shell( basename( __FILE__ ), 'Sitewide' );

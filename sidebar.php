@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $sidebar->set_data(array(
+    $sidebar->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'sidebar.php',
         'class'    => 'Template_Sidebar',
         'type'     => 'Partial',
         'parent'   => 'TIE_Partial',
     ));
-
-
-
-    $sidebar->get_shell( basename( __FILE__ ), 'Sidebar' );

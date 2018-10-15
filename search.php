@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $search->set_data(array(
+    $search->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'search.php',
         'class'    => 'Template_Search',
         'type'     => 'List',
         'parent'   => 'TIE_List',
     ));
-
-
-
-    $search->get_shell( basename( __FILE__ ), 'Sitewide' );

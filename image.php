@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $image->set_data(array(
+    $image->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'image.php',
         'class'    => 'Template_Image',
         'type'     => 'Media',
         'parent'   => 'TIE_Media',
     ));
-
-
-
-    $image->get_shell( basename( __FILE__ ), 'Sitewide' );

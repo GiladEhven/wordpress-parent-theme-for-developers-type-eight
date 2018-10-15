@@ -26,14 +26,9 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $comments->set_data(array(
+    $comments->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'comments.php',
         'class'    => 'Template_Comments',
         'type'     => 'Partial',
         'parent'   => 'TIE_Partial',
     ));
-
-
-
-    $comments->get_shell( basename( __FILE__ ), 'Comments' );
