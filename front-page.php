@@ -21,9 +21,6 @@
                     $this->update_jquery( '3.3.1', 'slim' );
                     $this->enable_bootstrap( '4.1.3', 'both' );
 
-                    // AND THEN BUILD AND RENDER...
-                    $this->build_and_render( basename( __FILE__ ), 'Sitewide' );
-
             }
 
         }
@@ -36,8 +33,7 @@
 
 
 
-    // WITHOUT THIS CALL, THE DEFAULT ERROR MESSAGE/ARRAY REMAINS AVAILABLE:
-    $front_page->set_data(array(
+    $front_page->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'front-page.php',
         'class'    => 'Template_Front_Page',
         'type'     => 'Front',

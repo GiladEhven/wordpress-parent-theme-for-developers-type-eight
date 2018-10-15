@@ -10,34 +10,13 @@
 
         abstract class TIE_Template extends TIE_Public {
 
-            protected $data = array
-            (
-                'error' => array
-                (
-                    'code'        => 'E0101',
-                    'message'     => 'NO DATA PUSHED FROM TEMPLATE!',
-                    'description' => 'Template [file] class has been instantiated, but no data captured or pushed in array via [set_data] to the [data] property. This means that the object representing this WordPress Template (type/role) contains no content for display on the front end. Note also that this error data is generated within the same [data] property in the form of default field value (overwritten/replaced automatically upon data push from template into [set_data] instance method.',
-                    'resolution'  => 'At template file, any time after template class instantiation, call [set_data] and pass array of content data.',
-                )
-            );
-
-            protected $view;
-
             public function __construct() {
 
                 parent::__construct();
 
-        //      $this->cleanup_scripts();
-
             }
 
-            public function get_data() {
-
-                return $this->data;
-
-            }
-
-            public function build_and_render( $view, $shell ) {
+            public function build_and_render( $shell, $view, $data ) {
 
                 $generic_shell = GILAD_TIE . '/app/shells/class-shell-sitewide.php';
                 $public_shell  = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
@@ -69,7 +48,7 @@
 
 
 
-                <?php $shell_object = new $shell_class( $view ); ?>
+                <?php $shell_object = new $shell_class( $view, $data ); ?>
 
 
 
@@ -86,12 +65,6 @@
                 <?php
 
                 get_footer();
-
-            }
-
-            public function set_data( $data ) {
-
-                $this->data = $data;
 
             }
 
@@ -243,22 +216,6 @@
                 // Can we get $type automatically instead of passing it?
 
                 // $resource = 'css', 'js', or 'both'
-
-            }
-
-            protected function render( $variable ) {
-
-                //  TODO: Account for captured sub-arrays no longer called $data[]...
-
-                if ( isset( $this->packaged_data[$variable] ) ) {
-
-                    echo $this->packaged_data[$variable];
-
-                } else {
-
-                    echo '<span class="gilad-render-none">Not Found: [ ' . $variable . ' ]</span>';
-
-                }
 
             }
 

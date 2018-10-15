@@ -6,7 +6,7 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/toolset/shell.php' );
 
-	if ( ! class_exists( __NAMESPACE__ . 'Shell_Sitewide' ) ) { class Shell_Sitewide extends TIE_Shell { public function __construct( $view ) { parent::__construct( $view ); echo GILAD_SEPARATOR_SHELL_START; ?>
+	if ( ! class_exists( __NAMESPACE__ . 'Shell_Sitewide' ) ) { class Shell_Sitewide extends TIE_Shell { public function __construct( $view, $data ) { parent::__construct( $view ); echo GILAD_SEPARATOR_SHELL_START; ?>
 
 
 
@@ -16,7 +16,15 @@
 
                 				<h1>Sitewide Shell : Start (Markup before view is called...)</h1>
 
-                				<?php $this->get_view(); ?>
+                				<?php $this->get_view();
+
+
+
+echo '<pre> BEFORE DATA IN SHELL FILE... '; print_r( $data ); echo ' AFTER DATA... </pre>';
+
+
+
+                				?>
 
                 				<h1>Sitewide Shell : End (Markup AFTER view is called!)</h1>
 

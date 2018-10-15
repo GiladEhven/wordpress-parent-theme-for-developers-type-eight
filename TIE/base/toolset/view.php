@@ -14,8 +14,6 @@
 
                 parent::__construct();
 
-                $this->render();
-
             }
 
         }

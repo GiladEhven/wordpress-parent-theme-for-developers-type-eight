@@ -12,15 +12,7 @@
 
             public function __construct() {
 
-                $this->something();
-
                 $this->object_counter++;
-
-            }
-
-            protected function something() {
-
-            	//
 
             }
 

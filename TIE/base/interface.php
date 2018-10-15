@@ -77,23 +77,13 @@
                 });
             }
 
-/*
-            protected function set_theme_descriptors() {
-                $theme_object = wp_get_theme();
-                $this->text_domain = $theme_object->get( 'TextDomain' );
-                $this->theme_version = $theme_object->get( 'Version' );
-            }
-*/
-
             protected function set_text_domain() {
                 $theme_object = wp_get_theme();
                 $this->text_domain = $theme_object->get( 'TextDomain' );
-//              $this->theme_version = $theme_object->get( 'Version' );
             }
 
             protected function set_theme_version() {
                 $theme_object = wp_get_theme();
-//              $this->text_domain = $theme_object->get( 'TextDomain' );
                 $this->theme_version = $theme_object->get( 'Version' );
             }
 
@@ -112,13 +102,6 @@
                 $this->project_prop_theme_uri          .= $theme_object->get( 'ThemeURI' );
                 $this->project_prop_theme_version      .= $theme_object->get( 'Version' );
             }
-
-
-
-
-
-
-
 
         }
 
