@@ -14,6 +14,12 @@
 
                 parent::__construct();
 
+                //  CANNED COMMENT FORM BLURBS
+                //  Thank you for joining the conversation!
+                //  All comments are moderated in accordance with our [privacy policy]...
+                //  All links are nofollow...
+                //  Do NOT use keywords in the name field (or any other field, please)... Let's have a real and meaningful conversation...
+
             }
 
         }
