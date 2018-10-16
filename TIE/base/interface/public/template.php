@@ -198,6 +198,116 @@
 
             }
 
+            public function enable_font_awesome( $version, $collection ) {
+
+                //  SOURCE  https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css
+                //  SOURCE  https://www.google.com/search?q=add_filter+style_loader_tag
+                //  SOURCE  https://wordpress.stackexchange.com/questions/176077/add-attribute-to-link-tag-thats-generated-through-wp-register-style
+
+                //  If collection != all
+
+                //      Enqueue collection
+
+                //      Enqueue base
+
+                //  Else (collection == all)
+
+                //      Enqueue all
+
+                //  Filter all CSS tags
+
+                add_action( 'wp_enqueue_scripts', function() use( $version, $resource, $popper ) {
+
+                    if ( ( $resource == 'both' ) || ( $resource == 'css' ) ) {
+
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+                            $dependencies = array();
+                            $for          = 'all';
+                            $handle       = 'localhost-bootstrap';
+                            $source       = get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css';
+                        } else {
+                            $dependencies = array();
+                            $handle       = 'bootstrap';
+                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/css/bootstrap.min.css';
+                        }
+
+                        wp_enqueue_style( $handle, $source, $dependencies );
+
+                    }
+
+                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
+
+                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+
+                            $deps_bootstrap   = array( 'localhost-jquery', 'localhost-popper' );
+                            $handle_bootstrap = 'localhost-bootstrap';
+                            $source_bootstrap = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
+
+                            $deps_popper      = array( 'localhost-jquery' );
+                            $handle_popper    = 'localhost-popper';
+                            $source_popper    = get_stylesheet_directory_uri() . '/public/scripts/localhost/popper.js';
+
+                        } else {
+
+                            $deps_bootstrap   = array( 'jquery', 'popper' );
+                            $handle_bootstrap = 'bootstrap';
+                            $source_bootstrap = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
+
+                            $deps_popper      = array( 'jquery' );
+                            $handle_popper    = 'popper';
+                            $source_popper    = 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/' . $popper . '/umd/popper.min.js';
+
+                        }
+
+                        wp_enqueue_script( $handle_bootstrap, $source_bootstrap, $deps_bootstrap );
+                        wp_enqueue_script( $handle_popper, $source_popper, $deps_popper );
+                    }
+
+                });
+
+                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $popper ) {
+
+                    $integrity = '';
+                    $payload   = 0;
+
+                    if ( ( $handle == 'bootstrap' ) || ( $handle == 'popper' ) ) {
+
+                        if ( ( $handle == 'bootstrap' ) ) {
+
+                            if (   $version == '3.3.7' ) $payload = 101;
+                            if (   $version == '4.1.3' ) $payload = 102;
+
+                            switch ( $payload ) {
+
+                                case 101: $integrity = 'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'; break;
+                                case 102: $integrity = 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy'; break;
+                                default:  $integrity = '';
+
+                            }
+
+                        } elseif ( ( $handle == 'popper' ) ) {
+
+                            if (   $popper == '1.14.3' ) $payload = 201;
+
+                            switch ( $payload ) {
+
+                                case 201: $integrity = 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'; break;
+                                default:  $integrity = '';
+
+                            }
+
+                        }
+
+                        $tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                    }
+
+                    return $tag;
+
+                }, 10, 3 );
+
+            }
+
             protected function load_document_resources( $ids, $resource ) {
 
                 // $ids  = array()
