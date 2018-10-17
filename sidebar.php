@@ -6,15 +6,11 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/partial.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Sidebar' ) ) {
+    class Template_Sidebar extends TIE_Partial {
 
-        class Template_Sidebar extends TIE_Partial {
+        public function __construct() {
 
-            public function __construct() {
-
-                parent::__construct();
-
-            }
+            parent::__construct();
 
         }
 

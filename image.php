@@ -6,22 +6,18 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/media.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Image' ) ) {
+    class Template_Image extends TIE_Media {
 
-        class Template_Image extends TIE_Media {
+        public function __construct() {
 
-            public function __construct() {
+            parent::__construct();
 
-                parent::__construct();
+            // HOUSEKEEPING FIRST...
+            $this->cleanup();
 
-                // HOUSEKEEPING FIRST...
-                $this->cleanup();
-
-                // THEN RESOURCES...
-                $this->update_jquery( '3.3.1', 'slim' );
-                $this->enable_bootstrap( '4.1.3', 'both' );
-
-            }
+            // THEN RESOURCES...
+            $this->update_jquery( '3.3.1', 'slim' );
+            $this->enable_bootstrap( '4.1.3', 'both' );
 
         }
 

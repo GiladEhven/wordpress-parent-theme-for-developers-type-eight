@@ -6,17 +6,13 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/partial.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Footer' ) ) {
+    class Template_Footer extends TIE_Partial {
 
-        class Template_Footer extends TIE_Partial {
+        public function __construct() {
 
-            public function __construct() {
+            parent::__construct();
 
-                parent::__construct();
-
-                $this->build_footer();
-
-            }
+            $this->build_footer();
 
         }
 

@@ -6,21 +6,17 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/interface/public/template/default/partial.php' );
 
-    if ( ! class_exists( __NAMESPACE__ . 'Template_Comments' ) ) {
+    class Template_Comments extends TIE_Discussion {
 
-        class Template_Comments extends TIE_Discussion {
+        public function __construct() {
 
-            public function __construct() {
+            parent::__construct();
 
-                parent::__construct();
-
-                //  CANNED COMMENT FORM BLURBS
-                //  Thank you for joining the conversation!
-                //  All comments are moderated in accordance with our [privacy policy]...
-                //  All links are nofollow...
-                //  Do NOT use keywords in the name field (or any other field, please)... Let's have a real and meaningful conversation...
-
-            }
+            //  CANNED COMMENT FORM BLURBS
+            //  Thank you for joining the conversation!
+            //  All comments are moderated in accordance with our [privacy policy]...
+            //  All links are nofollow...
+            //  Do NOT use keywords in the name field (or any other field, please)... Let's have a real and meaningful conversation...
 
         }
 
