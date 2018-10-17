@@ -14,6 +14,13 @@
 
                 parent::__construct();
 
+                // HOUSEKEEPING FIRST...
+                $this->cleanup();
+
+                // THEN RESOURCES...
+                $this->update_jquery( '3.3.1', 'slim' );
+                $this->enable_bootstrap( '4.1.3', 'both' );
+
             }
 
         }
