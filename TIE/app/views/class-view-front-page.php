@@ -6,22 +6,22 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/toolset/view.php' );
 
-	class View_Front_Page extends TIE_View { public function __construct() { parent::__construct(); echo GILAD_SEPARATOR_VIEW_START; ?>
+	class View_Front_Page extends TIE_View { public function __construct( $data ) { parent::__construct(); ?>
 
 
 
-        <?php  /*  --------------------------  DO NOT EDIT ABOVE THIS LINE  --------------------------  */  ?>
+    <?php  /*  --------------------------  DO NOT EDIT ABOVE THIS LINE  --------------------------  */  ?>
 
 
 
-								Generic (TIE) view for Front Page type...
+		<?php
+
+			echo '<pre><br />Generic (TIE) view for Front Page type...<br /><br />';
+			print_r( $data );
+			echo '<br /></pre>';
+
+		?>
 
 
 
-        <?php  /*  --------------------------  DO NOT EDIT BELOW THIS LINE  --------------------------  */
-
-
-
-    echo GILAD_SEPARATOR_VIEW_END; } }
-
-    $view_front_page = new View_Front_Page();
+    <?php  /*  --------------------------  DO NOT EDIT BELOW THIS LINE  --------------------------  */  } }
