@@ -244,6 +244,26 @@
 
                 }, 10, 3 );
 
+                //  SOURCE  https://www.google.com/search?q=add_filter+style_loader_tag
+                //  SOURCE  https://wordpress.stackexchange.com/questions/176077/add-attribute-to-link-tag-thats-generated-through-wp-register-style
+
+                add_filter( 'style_loader_tag', function( $link, $handle ) use( $version ) {
+
+                    $integrity = '';
+                    $payload   = 0;
+
+                    if ( $handle == 'bootstrap' ) {
+
+                        if ( $version == '4.1.3' ) $integrity = 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO';
+
+                        $link = str_replace( '/>', ' crossorigin="anonymous" integrity="' . $integrity . '" />', $link );
+
+                    }
+
+                    return $link;
+
+                }, 10, 2 );
+
             }
 
             public function enable_font_awesome( $version, $collections ) {
