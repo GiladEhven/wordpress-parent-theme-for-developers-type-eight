@@ -246,72 +246,63 @@
 
             }
 
-            public function enable_font_awesome( $version, $collection ) {
+            public function enable_font_awesome( $version, $collections ) {
 
                 //  SOURCE  https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css
                 //  SOURCE  https://www.google.com/search?q=add_filter+style_loader_tag
                 //  SOURCE  https://wordpress.stackexchange.com/questions/176077/add-attribute-to-link-tag-thats-generated-through-wp-register-style
 
-                //  If collection != all
+                if ( in_array( 'all', $collections ) ) {
 
-                //      Enqueue collection
-
-                //      Enqueue base
-
-                //  Else (collection == all)
-
-                //      Enqueue all
-
-                //  Filter all CSS tags
-
-                add_action( 'wp_enqueue_scripts', function() use( $version, $resource, $popper ) {
-
-                    if ( ( $resource == 'both' ) || ( $resource == 'css' ) ) {
-
-                        if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
-                            $dependencies = array();
-                            $for          = 'all';
-                            $handle       = 'localhost-bootstrap';
-                            $source       = get_stylesheet_directory_uri() . '/public/styles/localhost/bootstrap.css';
-                        } else {
-                            $dependencies = array();
-                            $handle       = 'bootstrap';
-                            $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/css/bootstrap.min.css';
-                        }
-
-                        wp_enqueue_style( $handle, $source, $dependencies );
-
-                    }
-
-                    if ( ( $resource == 'both' ) || ( $resource == 'js' ) ) {
+                    add_action( 'wp_enqueue_scripts', function() use( $version ) {
 
                         if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
 
-                            $deps_bootstrap   = array( 'localhost-jquery', 'localhost-popper' );
-                            $handle_bootstrap = 'localhost-bootstrap';
-                            $source_bootstrap = get_stylesheet_directory_uri() . '/public/scripts/localhost/bootstrap.js';
-
-                            $deps_popper      = array( 'localhost-jquery' );
-                            $handle_popper    = 'localhost-popper';
-                            $source_popper    = get_stylesheet_directory_uri() . '/public/scripts/localhost/popper.js';
+                            $handle_font_awesome = 'localhost-font-awesome';
+                            $source_font_awesome = get_stylesheet_directory_uri() . '/public/styles/localhost/font-awesome-all.css';
 
                         } else {
 
-                            $deps_bootstrap   = array( 'jquery', 'popper' );
-                            $handle_bootstrap = 'bootstrap';
-                            $source_bootstrap = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/js/bootstrap.min.js';
-
-                            $deps_popper      = array( 'jquery' );
-                            $handle_popper    = 'popper';
-                            $source_popper    = 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/' . $popper . '/umd/popper.min.js';
+                            $handle_font_awesome = 'font-awesome';
+                            $source_font_awesome = 'https://use.fontawesome.com/releases/v' . $version . '/css/all.css';
 
                         }
 
-                        wp_enqueue_script( $handle_bootstrap, $source_bootstrap, $deps_bootstrap );
-                        wp_enqueue_script( $handle_popper, $source_popper, $deps_popper );
+                        wp_enqueue_style( $handle_font_awesome, $source_font_awesome );
+
+                    });
+
+                } else {
+
+                    foreach ( $collections as $collection ) {
+
+                        add_action( 'wp_enqueue_scripts', function() use( $version, $collection ) {
+
+                            if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
+
+                                $handle_font_awesome = 'localhost-font-awesome-' . $collection;
+                                $source_font_awesome = get_stylesheet_directory_uri() . '/public/styles/localhost/font-awesome-' . $collection . '.css';
+
+                            } else {
+
+                                $handle_font_awesome = 'font-awesome-' . $collection;
+                                $source_font_awesome = 'https://use.fontawesome.com/releases/v' . $version . '/css/' . $collection . '.css';
+
+                            }
+
+                            wp_enqueue_style( $handle_font_awesome, $source_font_awesome );
+
+                        });
+
                     }
 
-                });
+                    add_action( 'wp_enqueue_scripts', function() use( $version ) {
+                        wp_enqueue_style( 'font-awesome-core', 'https://use.fontawesome.com/releases/v' . $version . '/css/fontawesome.css' );
+                    });
+
+                }
+
+                /*
 
                 add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $popper ) {
 
@@ -353,6 +344,8 @@
                     return $tag;
 
                 }, 10, 3 );
+
+                */
 
             }
 
