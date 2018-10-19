@@ -6,7 +6,7 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/toolset/shell.php' );
 
-	if ( ! class_exists( __NAMESPACE__ . 'Shell_Sitewide' ) ) { class Shell_Sitewide extends TIE_Shell { public function __construct( $view, $data ) { parent::__construct( $view ); ?>
+	class Shell_Sitewide extends TIE_Shell { public function __construct( $view, $data ) { parent::__construct( $view ); ?>
 
 
 
@@ -22,4 +22,4 @@
 
 
 
-    <?php  /*  --------------------------  DO NOT EDIT BELOW THIS LINE  --------------------------  */  } } }
+    <?php  /*  --------------------------  DO NOT EDIT BELOW THIS LINE  --------------------------  */  } }
