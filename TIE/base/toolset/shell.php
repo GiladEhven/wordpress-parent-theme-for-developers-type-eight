@@ -33,13 +33,19 @@
                     require_once( $tie_view );
                 }
 
+                $view_object = pathinfo( $view, PATHINFO_FILENAME );
+                $view_object = str_replace( '-', ' ', $view_object );
+                $view_object = ucwords( $view_object );
+                $view_object = str_replace( ' ', '_', $view_object );
+                $view_object = __NAMESPACE__ . '\View_' . $view_object;
+
                 echo "\n\r" . '                                <!--  ------------------------------------------------------------------------------------------------------------------------';
                 echo "\n\r";
                 echo "\n\r" . '                                                                                          START VIEW';
                 echo "\n\r";
                 echo "\n\r" . '                                -------------------------------------------------------------------------------------------------------------------------  -->';
 
-                $view_front_page = new View_Front_Page( $data );
+                $view = new $view_object( $data );
 
                 echo "\n\r" . '                                <!--  ------------------------------------------------------------------------------------------------------------------------';
                 echo "\n\r";
