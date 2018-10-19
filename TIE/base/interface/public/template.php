@@ -248,22 +248,18 @@
 
             public function enable_font_awesome( $version, $collections ) {
 
-                //  SOURCE  https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css
-                //  SOURCE  https://www.google.com/search?q=add_filter+style_loader_tag
-                //  SOURCE  https://wordpress.stackexchange.com/questions/176077/add-attribute-to-link-tag-thats-generated-through-wp-register-style
-
                 if ( in_array( 'all', $collections ) ) {
 
                     add_action( 'wp_enqueue_scripts', function() use( $version ) {
 
                         if ( strtolower( GILAD_ENVIRONMENT ) == 'localhost' ) {
 
-                            $handle_font_awesome = 'localhost-font-awesome';
+                            $handle_font_awesome = 'localhost-font-awesome-all';
                             $source_font_awesome = get_stylesheet_directory_uri() . '/public/styles/localhost/font-awesome-all.css';
 
                         } else {
 
-                            $handle_font_awesome = 'font-awesome';
+                            $handle_font_awesome = 'font-awesome-all';
                             $source_font_awesome = 'https://use.fontawesome.com/releases/v' . $version . '/css/all.css';
 
                         }
@@ -302,50 +298,65 @@
 
                 }
 
-                /*
+                //  SOURCE  https://www.google.com/search?q=add_filter+style_loader_tag
+                //  SOURCE  https://wordpress.stackexchange.com/questions/176077/add-attribute-to-link-tag-thats-generated-through-wp-register-style
 
-                add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $popper ) {
+                add_filter( 'style_loader_tag', function( $link, $handle ) use( $version ) {
 
                     $integrity = '';
                     $payload   = 0;
 
-                    if ( ( $handle == 'bootstrap' ) || ( $handle == 'popper' ) ) {
+                    if ( ( $handle == 'font-awesome-all' ) || ( $handle == 'font-awesome-brands' ) || ( $handle == 'font-awesome-core' ) || ( $handle == 'font-awesome-regular' ) || ( $handle == 'font-awesome-solid' ) ) {
 
-                        if ( ( $handle == 'bootstrap' ) ) {
+                        if ( $handle == 'font-awesome-all' ) {
 
-                            if (   $version == '3.3.7' ) $payload = 101;
-                            if (   $version == '4.1.3' ) $payload = 102;
+                            if ( $version == '5.0.13' ) $integrity = 'sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp';
+                            if ( $version == '5.1.1' )  $integrity = 'sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ';
+                            if ( $version == '5.2.0' )  $integrity = 'sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ';
+                            if ( $version == '5.3.1' )  $integrity = 'sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU';
+                            if ( $version == '5.4.1' )  $integrity = 'sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz';
 
-                            switch ( $payload ) {
+                        } elseif ( $handle == 'font-awesome-brands' ) {
 
-                                case 101: $integrity = 'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'; break;
-                                case 102: $integrity = 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy'; break;
-                                default:  $integrity = '';
+                            if ( $version == '5.0.13' ) $integrity = 'sha384-VGCZwiSnlHXYDojsRqeMn3IVvdzTx5JEuHgqZ3bYLCLUBV8rvihHApoA1Aso2TZA';
+                            if ( $version == '5.1.1' )  $integrity = 'sha384-SYNjKRRe+vDW0KSn/LrkhG++hqCLJg9ev1jIh8CHKuEA132pgAz+WofmKAhPpTR7';
+                            if ( $version == '5.2.0' )  $integrity = 'sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE';
+                            if ( $version == '5.3.1' )  $integrity = 'sha384-rf1bqOAj3+pw6NqYrtaE1/4Se2NBwkIfeYbsFdtiR6TQz0acWiwJbv1IM/Nt/ite';
+                            if ( $version == '5.4.1' )  $integrity = 'sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt';
 
-                            }
+                        } elseif ( $handle == 'font-awesome-core' ) {
 
-                        } elseif ( ( $handle == 'popper' ) ) {
+                            if ( $version == '5.0.13' ) $integrity = 'sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV';
+                            if ( $version == '5.1.1' )  $integrity = 'sha384-0b7ERybvrT5RZyD80ojw6KNKz6nIAlgOKXIcJ0CV7A6Iia8yt2y1bBfLBOwoc9fQ';
+                            if ( $version == '5.2.0' )  $integrity = 'sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6';
+                            if ( $version == '5.3.1' )  $integrity = 'sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7';
+                            if ( $version == '5.4.1' )  $integrity = 'sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I';
 
-                            if (   $popper == '1.14.3' ) $payload = 201;
+                        } elseif ( $handle == 'font-awesome-regular' ) {
 
-                            switch ( $payload ) {
+                            if ( $version == '5.0.13' ) $integrity = 'sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA';
+                            if ( $version == '5.1.1' )  $integrity = 'sha384-QNorH84/Id/CMkUkiFb5yTU3E/qqapnCVt6k5xh1PFIJ9hJ8VfovwwH/eMLQTjGS';
+                            if ( $version == '5.2.0' )  $integrity = 'sha384-zkhEzh7td0PG30vxQk1D9liRKeizzot4eqkJ8gB3/I+mZ1rjgQk+BSt2F6rT2c+I';
+                            if ( $version == '5.3.1' )  $integrity = 'sha384-ZlNfXjxAqKFWCwMwQFGhmMh3i89dWDnaFU2/VZg9CvsMGA7hXHQsPIqS+JIAmgEq';
+                            if ( $version == '5.4.1' )  $integrity = 'sha384-4e3mPOi7K1/4SAx8aMeZqaZ1Pm4l73ZnRRquHFWzPh2Pa4PMAgZm8/WNh6ydcygU';
 
-                                case 201: $integrity = 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'; break;
-                                default:  $integrity = '';
+                        } elseif ( $handle == 'font-awesome-solid' ) {
 
-                            }
+                            if ( $version == '5.0.13' ) $integrity = 'sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe';
+                            if ( $version == '5.1.1' )  $integrity = 'sha384-S2gVFTIn1tJ/Plf+40+RRAxBCiBU5oAMFUJxTXT3vOlxtXm7MGjVj62mDpbujs4C';
+                            if ( $version == '5.2.0' )  $integrity = 'sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z';
+                            if ( $version == '5.3.1' )  $integrity = 'sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW';
+                            if ( $version == '5.4.1' )  $integrity = 'sha384-osqezT+30O6N/vsMqwW8Ch6wKlMofqueuia2H7fePy42uC05rm1G+BUPSd2iBSJL';
 
                         }
 
-                        $tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+                        $link = str_replace( '/>', ' crossorigin="anonymous" integrity="' . $integrity . '" />', $link );
 
                     }
 
-                    return $tag;
+                    return $link;
 
-                }, 10, 3 );
-
-                */
+                }, 10, 2 );
 
             }
 
