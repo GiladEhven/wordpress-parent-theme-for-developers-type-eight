@@ -6,7 +6,7 @@
 
     require_once( get_stylesheet_directory() . '/TIE/base/toolset/view.php' );
 
-	class View_Image extends TIE_View { public function __construct( $data ) { parent::__construct(); ?>
+	class View_Archive extends TIE_View { public function __construct( $data ) { parent::__construct(); ?>
 
 
 
@@ -18,7 +18,7 @@
 
 				<?php
 
-					echo '<pre><br />Generic (TIE) view for Image type...<br /><br />';
+					echo '<pre><br />Generic (TIE) view for Archive type...<br /><br />';
 					print_r( $data );
 					echo '<br /></pre>';
 
