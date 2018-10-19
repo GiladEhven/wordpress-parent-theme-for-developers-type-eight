@@ -16,19 +16,67 @@
 
             }
 
+            protected function set_body_classes( $shell, $view ) {
+
+                add_filter('body_class', function( array $classes ) use( $shell, $view ) {
+
+                    global
+                        $is_chrome,
+                        $is_edge,
+                        $is_gecko,
+                        $is_IE,
+                        $is_iphone,
+                        $is_lynx,
+                        $is_opera,
+                        $is_macIE,
+                        $is_winIE,
+                        $is_NS4,
+                        $is_safari;
+ 
+                    if     ( $is_chrome ) $classes[] = 'browser-chrome';
+                    elseif ( $is_edge )   $classes[] = 'browser-edge';
+                    elseif ( $is_gecko )  $classes[] = 'browser-gecko';
+                    elseif ( $is_IE )     $classes[] = 'browser-ie';
+                    elseif ( $is_lynx )   $classes[] = 'browser-lynx';
+                    elseif ( $is_opera )  $classes[] = 'browser-opera';
+                    elseif ( $is_NS4 )    $classes[] = 'browser-ns4';
+                    elseif ( $is_safari ) $classes[] = 'browser-safari';
+                    else                  $classes[] = 'browser-unknown';
+
+                    if     ( $is_macIE )  $classes[] = 'ie-mac';
+                    elseif ( $is_winIE )  $classes[] = 'ie-win';
+
+                    if     ( $is_iphone ) $classes[] = 'mobile-iphone';
+
+                    $classes[] = $shell;
+                    $classes[] = $view;
+
+                    return $classes;
+
+                });
+            }
+
             public function build_and_render( $shell, $view, $data ) {
 
                 $generic_shell = GILAD_TIE . '/app/shells/class-shell-sitewide.php';
                 $public_shell  = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
                 $tie_shell     = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
 
+                $shell_name    = '';
+                $view_name     = pathinfo( 'view-' . $view, PATHINFO_FILENAME );
+
                 if ( file_exists( $public_shell ) ) {
                     require_once( $public_shell );
+                    $shell_name = 'shell-project-' . strtolower( $shell );
                 } elseif ( file_exists( $tie_shell ) ) {
                     require_once( $tie_shell );
+                    $shell_name = 'shell-tie-' . strtolower( $shell );
                 } else {
                     require_once( $generic_shell );
+                    $shell_name = 'shell-default-sitewide';
                 }
+
+                $this->set_body_classes( $shell_name, $view_name );
 
                 $shell_class = __NAMESPACE__ . '\Shell_' . $shell;
 
