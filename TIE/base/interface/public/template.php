@@ -169,7 +169,7 @@
                             $source       = 'https://stackpath.bootstrapcdn.com/bootstrap/' . $version . '/css/bootstrap.min.css';
                         }
 
-                        wp_enqueue_style( $handle, $source, $dependencies );
+                        wp_enqueue_style( $handle, $source, $dependencies, null, 'all' );
 
                     }
 
@@ -197,8 +197,8 @@
 
                         }
 
-                        wp_enqueue_script( $handle_bootstrap, $source_bootstrap, $deps_bootstrap );
-                        wp_enqueue_script( $handle_popper, $source_popper, $deps_popper );
+                        wp_enqueue_script( $handle_bootstrap, $source_bootstrap, $deps_bootstrap, null, true );
+                        wp_enqueue_script( $handle_popper, $source_popper, $deps_popper, null, true );
                     }
 
                 });
@@ -284,7 +284,7 @@
 
                         }
 
-                        wp_enqueue_style( $handle_font_awesome, $source_font_awesome );
+                        wp_enqueue_style( $handle_font_awesome, $source_font_awesome, array(), null, 'all' );
 
                     });
 
@@ -306,14 +306,14 @@
 
                             }
 
-                            wp_enqueue_style( $handle_font_awesome, $source_font_awesome );
+                            wp_enqueue_style( $handle_font_awesome, $source_font_awesome, array(), null, 'all' );
 
                         });
 
                     }
 
                     add_action( 'wp_enqueue_scripts', function() use( $version ) {
-                        wp_enqueue_style( 'font-awesome-core', 'https://use.fontawesome.com/releases/v' . $version . '/css/fontawesome.css' );
+                        wp_enqueue_style( 'font-awesome-core', 'https://use.fontawesome.com/releases/v' . $version . '/css/fontawesome.css', array(), null, 'all' );
                     });
 
                 }
@@ -417,7 +417,7 @@
                     if ( $flavor ) $flavor = $flavor . '.';
 
                     wp_deregister_script( 'jquery' );
-                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), 'CURRENT-NEW', true );
+                    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.' . $flavor . 'min.js', array(), null, true );
                     wp_enqueue_script( 'jquery' );
 
                 });
