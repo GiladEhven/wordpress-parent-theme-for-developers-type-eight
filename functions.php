@@ -16,13 +16,14 @@
     if ( ! defined( 'GILAD_PATH_CHILD' ) )                 define( 'GILAD_PATH_CHILD',                 get_stylesheet_directory() );
     if ( ! defined( 'GILAD_PATH_PARENT' ) )                define( 'GILAD_PATH_PARENT',                get_template_directory() );
     if ( ! defined( 'GILAD_PATH_PLUGINS' ) )               define( 'GILAD_PATH_PLUGINS',               '' );
-    if ( ! defined( 'GILAD_PATH_MUP' ) )                   define( 'GILAD_PATH_MUP',                   '' );
+    if ( ! defined( 'GILAD_PATH_MU_PLUGINS' ) )            define( 'GILAD_PATH_MU_PLUGINS',            '' );
     if ( ! defined( 'GILAD_PATH_CONTENT' ) )               define( 'GILAD_PATH_CONTENT',               '' );
 
-    if ( ! defined( 'GILAD_TIE' ) )                        define( 'GILAD_TIE',                        get_stylesheet_directory() . '/TIE' );
-    if ( ! defined( 'GILAD_TIE_CLASS_BASE' ) )             define( 'GILAD_TIE_CLASS_BASE',             get_stylesheet_directory() . '/TIE/base.php' );
-    if ( ! defined( 'GILAD_TIE_CLASS_CPT' ) )              define( 'GILAD_TIE_CLASS_CPT',              get_stylesheet_directory() . '/TIE/base/cms/cpt.php' );
-    if ( ! defined( 'GILAD_TIE_CLASS_USER' ) )             define( 'GILAD_TIE_CLASS_USER',             get_stylesheet_directory() . '/TIE/base/cms/user.php' );
+    if ( ! defined( 'GILAD_PATH_DIR_ADMIN' ) )             define( 'GILAD_PATH_DIR_ADMIN',             get_template_directory() . '/admin' );
+    if ( ! defined( 'GILAD_PATH_DIR_COMMON' ) )            define( 'GILAD_PATH_DIR_COMMON',            get_template_directory() . '/common' );
+    if ( ! defined( 'GILAD_PATH_DIR_PUBLIC' ) )            define( 'GILAD_PATH_DIR_PUBLIC',            get_template_directory() . '/public' );
+
+    if ( ! defined( 'GILAD_TIE' ) )                        define( 'GILAD_TIE',                        get_template_directory() . '/TIE' );
 
     if ( ! defined( 'GILAD_URL_CHILD' ) )                  define( 'GILAD_URL_CHILD',                  get_stylesheet_directory_uri() );
     if ( ! defined( 'GILAD_URL_PARENT' ) )                 define( 'GILAD_URL_PARENT',                 get_template_directory_uri() );
@@ -35,17 +36,13 @@
 
             if ( is_admin() ) {
 
-        //      require_once( get_stylesheet_directory() . '/admin/php/loaders/class-admin-resources.php' );
-        //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-admin.php' );
-        //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-media.php' );
-        //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-navigation.php' );
-        //      require_once( get_stylesheet_directory() . '/admin/php/theme/class-theme-support.php' );
+                // ----------------------------------------------------------------------------------------------- //
+                // ---------------------------------- TEMPORARY ADMIN FUNCTIONS ---------------------------------- //
+                // ----------------------------------------------------------------------------------------------- //
+                // -------------------------- MIGRATE TO TIE AFTER WE KNOW WHAT WE WANT -------------------------- //
+                // ----------------------------------------------------------------------------------------------- //
 
-        //      $admin_resources  = new Admin_Resources;
-        //      $theme_admin      = new Theme_Admin;
-        //      $theme_media      = new Theme_Media;
-        //      $theme_navigation = new Theme_Navigation;
-        //      $theme_support    = new Theme_Support;
+
 
                 // ---------------------------------------------------------------------------------------- //
                 // -------------------------- TODO: MIGRATE INWARD (MOST TO TIE) -------------------------- //
@@ -234,7 +231,11 @@
 
             } else {
 
-                // IF IS NOT ADMIN
+                // ----------------------------------------------------------------------------------------------- //
+                // ---------------------------------- TEMPORARY PUBLIC FUNCTIONS --------------------------------- //
+                // ----------------------------------------------------------------------------------------------- //
+                // -------------------------- MIGRATE TO TIE AFTER WE KNOW WHAT WE WANT -------------------------- //
+                // ----------------------------------------------------------------------------------------------- //
 
             }
 
@@ -242,27 +243,7 @@
 
         public function requirements() {
 
-            // TYPE     MANDATE                 PRIMARY (MUST EXIST)         SECONDARIES (IF EXISTS)    RECOMMENDATIONS: Performance, Security, SEO
-
-            // One      Mono Object             None                         ACF
-
-            // Two      No Shells, No Views     None                         ACF
-
-            // Three    Native API's            None                         ACF
-
-            // Four     Tavnit                  None                         ACF
-
-            // Five     Timber                  Timber                       ACF
-
-            // Six      ACF Page Builder        ACF
-
-            // Seven    BB                      Beaver Builder               ACF
-
-            // Eight    Strings                 None                         ACF
-
-            // Nine     Gutenberg               Gutenberg                    ACF
-
-            // Ten      ?
+            //
 
         }
 
