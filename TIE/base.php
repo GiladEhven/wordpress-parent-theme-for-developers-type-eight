@@ -14,7 +14,7 @@
 
                 $this->object_counter++;
 
-//              $this->load_project_specific_implementations();
+                $this->load_project_specific_implementations();
 
             }
 
