@@ -24,8 +24,8 @@
 
                 $view = $this->view;
 
-                $public_view = get_stylesheet_directory() . '/public/views/class-view-' . $view;
-                $tie_view    = GILAD_TIE . '/app/views/class-view-' . $view;
+                $public_view = get_stylesheet_directory() . '/public/classes/views/class-view-' . $view;
+                $tie_view    = GILAD_TIE . '/app/classes/views/class-view-' . $view;
 
                 if ( file_exists( $public_view ) ) {
                     require_once( $public_view );
