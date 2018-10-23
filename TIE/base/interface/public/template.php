@@ -58,9 +58,9 @@
 
             public function build_and_render( $shell, $view, $data ) {
 
-                $generic_shell = GILAD_TIE . '/app/shells/class-shell-sitewide.php';
-                $public_shell  = get_stylesheet_directory() . '/public/shells/class-shell-' . $shell . '.php';
-                $tie_shell     = GILAD_TIE . '/app/shells/class-shell-' . strtolower( $shell ) . '.php';
+                $generic_shell = GILAD_TIE . '/app/classes/shells/class-shell-sitewide.php';
+                $public_shell  = get_stylesheet_directory() . '/public/classes/shells/class-shell-' . $shell . '.php';
+                $tie_shell     = GILAD_TIE . '/app/classes/shells/class-shell-' . strtolower( $shell ) . '.php';
 
                 $shell_name    = '';
                 $view_name     = pathinfo( 'view-' . $view, PATHINFO_FILENAME );
