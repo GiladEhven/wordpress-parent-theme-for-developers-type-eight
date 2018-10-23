@@ -25,11 +25,11 @@
 
 
 
-    $page = new Template_Page();
+    $page_object = new Template_Page();
 
 
 
-    $page->build_and_render( 'Sitewide', basename( __FILE__ ), array(
+    $page_object->build_and_render( 'Sitewide', basename( __FILE__ ), array(
         'template' => 'page.php',
         'class'    => 'Template_Page',
         'type'     => 'Document',
