@@ -4,6 +4,8 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    require_once( get_stylesheet_directory() . '/TIE/base/interface/common.php' );
+
     if ( ! defined( 'GILAD_ENABLE_SCRIBE_FOR_CLASS' ) )    define( 'GILAD_ENABLE_SCRIBE_FOR_CLASS',    true );
     if ( ! defined( 'GILAD_ENABLE_SCRIBE_FOR_QUERY' ) )    define( 'GILAD_ENABLE_SCRIBE_FOR_QUERY',    true );
     if ( ! defined( 'GILAD_ENABLE_SCRIBE_FOR_REST' ) )     define( 'GILAD_ENABLE_SCRIBE_FOR_REST',     true );
@@ -30,9 +32,11 @@
 
     if ( ! defined( 'GILAD_WEBSITE_PHASE' ) )              define( 'GILAD_WEBSITE_PHASE',              '' );
 
-    class Theme_Core {
+    class Theme_Core extends TIE_Common {
 
         public function __construct() {
+
+            parent::__construct();
 
             if ( is_admin() ) {
 
