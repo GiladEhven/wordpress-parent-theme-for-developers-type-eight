@@ -18,9 +18,7 @@
 
             }
 
-            protected function get_featured_image_urls() {
-
-//              $image_ID = get_post_thumbnail_id();
+            protected function get_featured_image_urls( $post_id ) {
 
                 $image_sizes_array = get_intermediate_image_sizes();
 
@@ -28,11 +26,13 @@
 
                 foreach( $image_sizes_array as $image_size ) {
 
-                    $images_array[] = get_the_post_thumbnail_url( null, $image_size );
+                    $current_pair = array( $image_size => get_the_post_thumbnail_url( $post_id, $image_size ) );
+                    $images_array = array_merge( $images_array, $current_pair );
+
 
                 }
 
-                return array_values( array_unique( $images_array ) );
+                return $images_array;
 
             }
 

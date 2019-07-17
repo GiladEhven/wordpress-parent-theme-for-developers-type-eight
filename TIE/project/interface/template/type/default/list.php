@@ -10,14 +10,11 @@
 
         abstract class TIE_List extends TIE_Default {
 
-public $requested_post_types = 'boo!';
-
             public function __construct() {
 
                 parent::__construct();
 
                 $query_object = get_queried_object();
-            //  $query_object = get_post_type_object( 'your_post_type_name' );;
 
                 $this->set_list_props( $query_object );
 
@@ -50,39 +47,7 @@ public $requested_post_types = 'boo!';
                 $this->this_template_y      = '---------------------------------  T H I S   T E M P L A T E  ---------------------------------';
                 $this->this_template_z      = '-----------------------------------------------------------------------------------------------';
 
-// $this->requested_post_types = 'boo!';
-
             }
-
-/*
-protected function get_requested_post_types() {
-
-    $requested_post_types = $this->requested_post_types;
-
-    return $requested_post_types;
-
-}
-*/
-
-/*
-            public function set_requested_post_types( $post_types_array ) {
-
-                $set_array = array();
-
-                if ( $post_types_array) {
-
-                    $set_array = $post_types_array;
-
-                } else {
-
-                    $set_array = array( 'all' );
-
-                }
-
-                $this->requested_post_types = $set_array;
-
-            }
-*/
 
             protected function set_author_props( $query_object ) {
 
@@ -95,6 +60,7 @@ protected function get_requested_post_types() {
                 foreach ( $posts_query_array as $post_object ) {
 
                     if ( $post_object->post_name == 'http-404' ) continue;
+                    if ( $post_object->post_type != 'post' ) continue;
 
                     $posts_counter++;
 
@@ -111,12 +77,15 @@ protected function get_requested_post_types() {
                     $posts_by_author[$posts_counter]['post_datetime_pub'] = $post_datetime_pub;
                     $posts_by_author[$posts_counter]['post_datetime_upd'] = $post_datetime_upd;
                     $posts_by_author[$posts_counter]['post_date_publish'] = date( $this->site_date_format, strtotime( $post_datetime_pub_arr[0] ) );
+                    $posts_by_author[$posts_counter]['post_date_pub']     = trim( strstr( $posts_by_author[$posts_counter]['post_date_publish'], ' ' ) );
                     $posts_by_author[$posts_counter]['post_date_update']  = date( $this->site_date_format, strtotime( $post_datetime_upd_arr[0] ) );
+                    $posts_by_author[$posts_counter]['post_date_upd']     = trim( strstr( $posts_by_author[$posts_counter]['post_date_update'], ' ' ) );
                     $posts_by_author[$posts_counter]['post_slug']         = $post_object->post_name;
                     $posts_by_author[$posts_counter]['post_time_publish'] = date( $this->site_time_format, strtotime( $post_datetime_pub_arr[1] ) );
                     $posts_by_author[$posts_counter]['post_time_update']  = date( $this->site_time_format, strtotime( $post_datetime_upd_arr[1] ) );
                     $posts_by_author[$posts_counter]['post_title']        = $post_object->post_title;
                     $posts_by_author[$posts_counter]['post_type']         = $post_object->post_type;
+                    $posts_by_author[$posts_counter]['post_url']          = get_permalink( $post_object->ID );
 
                 }
 
@@ -145,20 +114,39 @@ protected function get_requested_post_types() {
             protected function set_category_props( $query_object ) {
 
                 $category_id = $query_object->cat_ID;
+
+                $categories_array = get_categories();
+                $categories_counter = 0;
+                $categories_all = array();
+
                 $posts_in_category = array();
                 $posts_counter = 0;
                 $posts_query = new \WP_Query( array( 'cat' => $category_id ) );
                 $posts_query_array = $posts_query->posts;
 
+                foreach ( $categories_array as $category ) {
+
+                    $categories_counter++;
+
+                    $categories_all[$categories_counter]['count']       = $category->count;
+                    $categories_all[$categories_counter]['description'] = $category->description;
+                    $categories_all[$categories_counter]['id']          = $category->term_id;
+                    $categories_all[$categories_counter]['name']        = $category->name;
+                    $categories_all[$categories_counter]['parent']      = $category->parent;
+                    $categories_all[$categories_counter]['slug']        = $category->slug;
+                    $categories_all[$categories_counter]['url']         = get_category_link( $category->term_id );
+
+                }
+
                 foreach ( $posts_query_array as $post_object ) {
 
                     $posts_counter++;
 
-                    $post_datetime_pub                                    = $post_object->post_date;
-                    $post_datetime_pub_arr                                = explode( ' ', $post_datetime_pub );
+                    $post_datetime_pub                                      = $post_object->post_date;
+                    $post_datetime_pub_arr                                  = explode( ' ', $post_datetime_pub );
 
-                    $post_datetime_upd                                    = $post_object->post_modified;
-                    $post_datetime_upd_arr                                = explode( ' ', $post_datetime_upd );
+                    $post_datetime_upd                                      = $post_object->post_modified;
+                    $post_datetime_upd_arr                                  = explode( ' ', $post_datetime_upd );
 
                     $posts_in_category[$posts_counter]['post_comments']     = $post_object->comment_count;
                     $posts_in_category[$posts_counter]['post_content']      = $post_object->post_content;
@@ -167,12 +155,17 @@ protected function get_requested_post_types() {
                     $posts_in_category[$posts_counter]['post_datetime_pub'] = $post_datetime_pub;
                     $posts_in_category[$posts_counter]['post_datetime_upd'] = $post_datetime_upd;
                     $posts_in_category[$posts_counter]['post_date_publish'] = date( $this->site_date_format, strtotime( $post_datetime_pub_arr[0] ) );
+                    $posts_in_category[$posts_counter]['post_date_pub']     = trim( strstr( $posts_in_category[$posts_counter]['post_date_publish'], ' ' ) );
                     $posts_in_category[$posts_counter]['post_date_update']  = date( $this->site_date_format, strtotime( $post_datetime_upd_arr[0] ) );
+                    $posts_in_category[$posts_counter]['post_date_upd']     = trim( strstr( $posts_in_category[$posts_counter]['post_date_update'], ' ' ) );
                     $posts_in_category[$posts_counter]['post_slug']         = $post_object->post_name;
                     $posts_in_category[$posts_counter]['post_time_publish'] = date( $this->site_time_format, strtotime( $post_datetime_pub_arr[1] ) );
                     $posts_in_category[$posts_counter]['post_time_update']  = date( $this->site_time_format, strtotime( $post_datetime_upd_arr[1] ) );
                     $posts_in_category[$posts_counter]['post_title']        = $post_object->post_title;
                     $posts_in_category[$posts_counter]['post_type']         = $post_object->post_type;
+                    $posts_in_category[$posts_counter]['post_url']          = get_permalink( $post_object->ID );
+
+                    if ( empty( $posts_in_category[$posts_counter]['post_excerpt'] ) ) $posts_in_category[$posts_counter]['post_excerpt'] = wp_trim_words( $posts_in_category[$posts_counter]['post_content'], 20, '...' );
 
                 }
 
@@ -180,6 +173,7 @@ protected function get_requested_post_types() {
                 $this->category_y           = '---------------------------  T I E   L I S T   :   C A T E G O R Y  ---------------------------';
                 $this->category_z           = '-----------------------------------------------------------------------------------------------';
 
+                $this->categories           = $categories_all;
                 $this->category_count       = $query_object->category_count;
                 $this->category_description = $query_object->category_description;
                 $this->category_entries     = $query_object->category_count;
@@ -210,38 +204,38 @@ protected function get_requested_post_types() {
                 $this->cpt_slug             = $query_object->has_archive;
                 $this->cpt_title            = $query_object->label;
 
+                // TODO: Add check to do the following for term archive only... Or move to separate into it's own method... And do checks in constructor...
+
+                $this->term_x               = '-----------------------------------------------------------------------------------------------';
+                $this->term_y               = '---------------------------  T I E   L I S T   :   C P T   T E R M  ---------------------------';
+                $this->term_z               = '-----------------------------------------------------------------------------------------------';
+
+                $this->term_id              = $query_object->term_id;
+
             }
 
             protected function set_date_props( $query_object ) {
 
-                $date_get_day   = get_query_var('day');
-                $date_get_month = get_query_var('monthnum');
-                $date_get_year  = get_query_var('year');
-
-            //  $date_query = 'year=' . $date_get_year;
-
-            //  if ( $date_get_month > 0 ) $date_query = $date_query . '&monthnum=' . $date_get_month;
-            //  if ( $date_get_day > 0 )   $date_query = $date_query . '&day='      . $date_get_day;
+                $date_num_day   = get_query_var('day');
+                $date_num_month = get_query_var('monthnum');
+                $date_num_year  = get_query_var('year');
 
                 $date_query = array();
-                $date_query['year'] = $date_get_year;
-                if ( $date_get_month > 0 ) $date_query['monthnum'] = $date_get_month;
-                if ( $date_get_day > 0 )   $date_query['day'] = $date_get_day;
+                $date_query['year'] = $date_num_year;
+                if ( $date_num_month > 0 ) $date_query['monthnum'] = $date_num_month;
+                if ( $date_num_day > 0 )   $date_query['day'] = $date_num_day;
 
-            //  $date['post_type'] = array( 'any' );
-        //      $post_types = array( 'any' );
-// $date_query['post_type'] = $this->get_requested_post_types();
-
-
-
-//  IF [post_types] ARRAY PASSED FROM TEMPLATE, USE IT. OTHERWISE, SET TO ALL...
-
-
+                $date_name = '';
+                if ( $date_num_day > 0 ) {
+                    $date_name = date( $this->site_date_format, mktime( 0, 0, 0, $date_num_month, $date_num_day, $date_num_year ) );
+                } elseif ( $date_num_month > 0 ) {
+                    $date_name = date( 'F', mktime(0, 0, 0, $date_num_month, 1, 1 ) ) . ' ' . $date_num_year;
+                } else {
+                    $date_name = $date_num_year;
+                }
 
                 $posts_counter = 0;
                 $posts_in_date = array();
-            //  $posts_query = new \WP_Query( $date_query . '&post_type=any' );
-            //  $posts_query = new \WP_Query( $date );
                 $posts_query = new \WP_Query( $date_query );
                 $posts_query_array = $posts_query->posts;
 
@@ -256,13 +250,14 @@ protected function get_requested_post_types() {
                     $post_datetime_upd_arr                                = explode( ' ', $post_datetime_upd );
 
                     $posts_in_date[$posts_counter]['post_comments']       = $post_object->comment_count;
-                //  $posts_in_date[$posts_counter]['post_content']        = $post_object->post_content;
                     $posts_in_date[$posts_counter]['post_excerpt']        = $post_object->post_excerpt;
                     $posts_in_date[$posts_counter]['post_id']             = $post_object->ID;
                     $posts_in_date[$posts_counter]['post_datetime_pub']   = $post_datetime_pub;
                     $posts_in_date[$posts_counter]['post_datetime_upd']   = $post_datetime_upd;
                     $posts_in_date[$posts_counter]['post_date_publish']   = date( $this->site_date_format, strtotime( $post_datetime_pub_arr[0] ) );
+                    $posts_in_date[$posts_counter]['post_date_pub']       = trim( strstr( $posts_in_date[$posts_counter]['post_date_publish'], ' ' ) );
                     $posts_in_date[$posts_counter]['post_date_update']    = date( $this->site_date_format, strtotime( $post_datetime_upd_arr[0] ) );
+                    $posts_in_date[$posts_counter]['post_date_upd']       = trim( strstr( $posts_in_date[$posts_counter]['post_date_update'], ' ' ) );
                     $posts_in_date[$posts_counter]['post_slug']           = $post_object->post_name;
                     $posts_in_date[$posts_counter]['post_time_publish']   = date( $this->site_time_format, strtotime( $post_datetime_pub_arr[1] ) );
                     $posts_in_date[$posts_counter]['post_time_update']    = date( $this->site_time_format, strtotime( $post_datetime_upd_arr[1] ) );
@@ -275,15 +270,15 @@ protected function get_requested_post_types() {
                 $this->date_y               = '-------------------------------  T I E   L I S T   :   D A T E  -------------------------------';
                 $this->date_z               = '-----------------------------------------------------------------------------------------------';
 
-                $this->date_get_day    = $date_get_day;
-                $this->date_get_month  = $date_get_month;
-                $this->date_get_year   = $date_get_year;
-//                $this->date_post_types = $post_types;
+                $this->date_name       = $date_name;
+                $this->date_get_day    = $date_num_day;
+                $this->date_get_month  = $date_num_month;
+                $this->date_get_year   = $date_num_year;
                 $this->date_posts     = $posts_in_date;
                 $this->date_query     = $date_query;
 
-$this->archive_controls_newer_posts = get_previous_posts_link();
-$this->archive_controls_older_posts = get_next_posts_link();
+                $this->archive_controls_newer_posts = get_previous_posts_link();
+                $this->archive_controls_older_posts = get_next_posts_link();
 
             }
 
@@ -297,12 +292,14 @@ $this->archive_controls_older_posts = get_next_posts_link();
 
                 $posts_counter = 0;
                 $posts_in_home = array();
-                $posts_query = new \WP_Query( array( 'post_type' => array( 'any' ) ) );
+                $posts_query = new \WP_Query( array( 'post_type' => array( 'post' ) ) );
                 $posts_query_array = $posts_query->posts;
 
                 foreach ( $posts_query_array as $post_object ) {
 
                     $posts_counter++;
+
+                    $post_id = $post_object->ID;
 
                     $post_in_home_datetime_pub                                    = $post_object->post_date;
                     $post_in_home_datetime_pub_arr                                = explode( ' ', $post_in_home_datetime_pub );
@@ -310,19 +307,24 @@ $this->archive_controls_older_posts = get_next_posts_link();
                     $post_in_home_datetime_upd                                    = $post_object->post_modified;
                     $post_in_home_datetime_upd_arr                                = explode( ' ', $post_in_home_datetime_upd );
 
-                    $posts_in_home[$posts_counter]['post_comments']       = $post_object->comment_count;
-                    $posts_in_home[$posts_counter]['post_content']        = $post_object->post_content;
-                    $posts_in_home[$posts_counter]['post_excerpt']        = $post_object->post_excerpt;
-                    $posts_in_home[$posts_counter]['post_id']             = $post_object->ID;
-                    $posts_in_home[$posts_counter]['post_datetime_pub']   = $post_in_home_datetime_pub;
-                    $posts_in_home[$posts_counter]['post_datetime_upd']   = $post_in_home_datetime_upd;
-                    $posts_in_home[$posts_counter]['post_date_publish']   = date( $this->site_date_format, strtotime( $post_in_home_datetime_pub_arr[0] ) );
-                    $posts_in_home[$posts_counter]['post_date_update']    = date( $this->site_date_format, strtotime( $post_in_home_datetime_upd_arr[0] ) );
-                    $posts_in_home[$posts_counter]['post_slug']           = $post_object->post_name;
-                    $posts_in_home[$posts_counter]['post_time_publish']   = date( $this->site_time_format, strtotime( $post_in_home_datetime_pub_arr[1] ) );
-                    $posts_in_home[$posts_counter]['post_time_update']    = date( $this->site_time_format, strtotime( $post_in_home_datetime_upd_arr[1] ) );
-                    $posts_in_home[$posts_counter]['post_title']          = $post_object->post_title;
-                    $posts_in_home[$posts_counter]['post_type']           = $post_object->post_type;
+                    $posts_in_home[$posts_counter]['post_comments']               = $post_object->comment_count;
+                    $posts_in_home[$posts_counter]['post_content']                = $post_object->post_content;
+                    $posts_in_home[$posts_counter]['post_excerpt']                = $post_object->post_excerpt;
+                    $posts_in_home[$posts_counter]['post_image']                  = $this->get_featured_image_urls( $post_id );
+                    $posts_in_home[$posts_counter]['post_image_alt']              = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
+                    $posts_in_home[$posts_counter]['post_id']                     = $post_id;
+                    $posts_in_home[$posts_counter]['post_datetime_pub']           = $post_in_home_datetime_pub;
+                    $posts_in_home[$posts_counter]['post_datetime_upd']           = $post_in_home_datetime_upd;
+                    $posts_in_home[$posts_counter]['post_date_publish']           = date( $this->site_date_format, strtotime( $post_in_home_datetime_pub_arr[0] ) );
+                    $posts_in_home[$posts_counter]['post_date_pub']               = trim( strstr( $posts_in_home[$posts_counter]['post_date_publish'], ' ' ) );
+                    $posts_in_home[$posts_counter]['post_date_update']            = date( $this->site_date_format, strtotime( $post_in_home_datetime_upd_arr[0] ) );
+                    $posts_in_home[$posts_counter]['post_date_upd']               = trim( strstr( $posts_in_home[$posts_counter]['post_date_update'], ' ' ) );
+                    $posts_in_home[$posts_counter]['post_slug']                   = $post_object->post_name;
+                    $posts_in_home[$posts_counter]['post_time_publish']           = date( $this->site_time_format, strtotime( $post_in_home_datetime_pub_arr[1] ) );
+                    $posts_in_home[$posts_counter]['post_time_update']            = date( $this->site_time_format, strtotime( $post_in_home_datetime_upd_arr[1] ) );
+                    $posts_in_home[$posts_counter]['post_title']                  = $post_object->post_title;
+                    $posts_in_home[$posts_counter]['post_type']                   = $post_object->post_type;
+                    $posts_in_home[$posts_counter]['post_url']                    = get_permalink( $post_object->ID );
 
                 }
 
@@ -360,7 +362,7 @@ $this->archive_controls_older_posts = get_next_posts_link();
                 $search_query = get_search_query();
 
                 $posts_counter = 0;
-$posts_in_search = array();
+                $posts_in_search = array();
                 $posts_query = new \WP_Query( array( 's' => $search_query, 'post_type' => array( 'any' ) ) );
                 $posts_query_array = $posts_query->posts;
 
@@ -381,7 +383,9 @@ $posts_in_search = array();
                     $posts_in_search[$posts_counter]['post_datetime_pub'] = $post_datetime_pub;
                     $posts_in_search[$posts_counter]['post_datetime_upd'] = $post_datetime_upd;
                     $posts_in_search[$posts_counter]['post_date_publish'] = date( $this->site_date_format, strtotime( $post_datetime_pub_arr[0] ) );
+                    $posts_in_search[$posts_counter]['post_date_pub']     = trim( strstr( $posts_in_search[$posts_counter]['post_date_publish'], ' ' ) );
                     $posts_in_search[$posts_counter]['post_date_update']  = date( $this->site_date_format, strtotime( $post_datetime_upd_arr[0] ) );
+                    $posts_in_search[$posts_counter]['post_date_upd']     = trim( strstr( $posts_in_search[$posts_counter]['post_date_update'], ' ' ) );
                     $posts_in_search[$posts_counter]['post_slug']         = $post_object->post_name;
                     $posts_in_search[$posts_counter]['post_time_publish'] = date( $this->site_time_format, strtotime( $post_datetime_pub_arr[1] ) );
                     $posts_in_search[$posts_counter]['post_time_update']  = date( $this->site_time_format, strtotime( $post_datetime_upd_arr[1] ) );
@@ -403,10 +407,28 @@ $posts_in_search = array();
             protected function set_tag_props( $query_object ) {
 
                 $tag_id = $query_object->term_id;
+
                 $posts_in_tag = array();
                 $posts_counter = 0;
                 $posts_query = new \WP_Query( array( 'tag_id' => $tag_id ) );
                 $posts_query_array = $posts_query->posts;
+
+                $tags_array = get_tags();
+                $tags_counter = 0;
+                $tags_all = array();
+
+                foreach ( $tags_array as $tag ) {
+
+                    $tags_counter++;
+
+                    $tags_all[$tags_counter]['count']       = $tag->count;
+                    $tags_all[$tags_counter]['description'] = $tag->description;
+                    $tags_all[$tags_counter]['id']          = $tag->term_id;
+                    $tags_all[$tags_counter]['name']        = $tag->name;
+                    $tags_all[$tags_counter]['slug']        = $tag->slug;
+                    $tags_all[$tags_counter]['url']         = get_tag_link( $tag->term_id );
+
+                }
 
                 foreach ( $posts_query_array as $post_object ) {
 
@@ -432,12 +454,19 @@ $posts_in_search = array();
                     $posts_in_tag[$posts_counter]['post_title']        = $post_object->post_title;
                     $posts_in_tag[$posts_counter]['post_type']         = $post_object->post_type;
 
+                    $posts_in_tag[$posts_counter]['post_date_pub']     = trim( strstr( $posts_in_tag[$posts_counter]['post_date_publish'], ' ' ) );
+
+                    $posts_in_tag[$posts_counter]['post_date_upd']     = trim( strstr( $posts_in_tag[$posts_counter]['post_date_update'], ' ' ) );
+
+                    if ( empty( $posts_in_tag[$posts_counter]['post_excerpt'] ) ) $posts_in_tag[$posts_counter]['post_excerpt'] = wp_trim_words( $posts_in_tag[$posts_counter]['post_content'], 20, '...' );
+
                 }
 
                 $this->tag_x                = '-----------------------------------------------------------------------------------------------';
                 $this->tag_y                = '--------------------------------  T I E   L I S T   :   T A G  --------------------------------';
                 $this->tag_z                = '-----------------------------------------------------------------------------------------------';
 
+                $this->tags_all             = $tags_all;
                 $this->tag_description      = $query_object->description;
                 $this->tag_id               = $tag_id;
                 $this->tag_name             = $query_object->name;

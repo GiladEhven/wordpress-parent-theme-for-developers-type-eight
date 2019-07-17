@@ -14,27 +14,7 @@
 
                 parent::__construct();
 
-            //  $this->set_partial_props();
-
             }
-
-            /*
-            protected function set_partial_props() {
-
-                $query_object = get_queried_object();
-
-                $this->error1_x                = '-----------------------------------------------------------------------------------------------';
-                $this->error1_y                = '-------------------------  T I E   E R R O R   :   ?  -------------------------';
-                $this->error1_z                = '-----------------------------------------------------------------------------------------------';
-
-            }
-            */
-
-
-
-
-
-
 
             public function build_footer() {
 
@@ -61,7 +41,7 @@
 
                                     ?>
 
-                                <footer>
+                                <footer id="body-footer">
 
                                     <?php
 
@@ -73,11 +53,11 @@
 
                                     ?>
 
-                                </footer>
+                                </footer><!-- #body-footer -->
 
                                 <?php $this->gilad_wrapper_end(); ?>
 
-                            </div>
+                            </div><!-- #body-liner -->
 
                             <?php
 
@@ -106,8 +86,6 @@
             }
 
             public function build_header() {
-
-                //
 
                 ?>
 
@@ -161,6 +139,10 @@
                             <?php // gravity_form_enqueue_scripts( 1, true );
                             wp_head(); ?>
 
+                            <?php if ( is_page( array( 'contact', 'subscribe' ) ) ) { ?>
+                            <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/0286cf1fb424f3f3c2e7172a6/95110b91138a4975e9042ee32.js");</script>
+                            <?php } ?>
+
                         </head>
 
                         <body <?php body_class(); ?>>
@@ -171,11 +153,11 @@
 
                             <?php $this->gilad_body_begin(); ?>
 
-                            <div id="body">
+                            <div id="body-liner">
 
                                 <?php $this->gilad_wrapper_begin(); ?>
 
-                                <header>
+                                <header id="body-header">
 
                                     <?php
 
@@ -187,7 +169,7 @@
 
                                     ?>
 
-                                </header>
+                                </header><!-- #body-header -->
 
                                     <?php
 

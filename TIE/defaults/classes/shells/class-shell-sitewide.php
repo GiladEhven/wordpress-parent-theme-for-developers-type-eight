@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( get_stylesheet_directory() . '/TIE/project/toolset/shell.php' );
+    require_once( get_stylesheet_directory() . '/TIE/project/interface/template/shell.php' );
 
 	class Shell_Sitewide extends TIE_Shell { public function __construct( $view, $data ) { parent::__construct( $view ); ?>
 
@@ -16,11 +16,7 @@
 
 
 
-            				<h1>Sitewide Shell : START</h1>
-
             				<?php $this->get_view( $data ); ?>
-
-            				<h1>Sitewide Shell : END</h1>
 
 
 

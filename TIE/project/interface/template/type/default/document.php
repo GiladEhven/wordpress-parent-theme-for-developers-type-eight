@@ -96,6 +96,7 @@
                         $document_excerpt            = get_the_excerpt();
                         $document_featured_image_has = has_post_thumbnail();
                         $document_featured_image_ID  = get_post_thumbnail_id();
+                        $document_featured_image_alt = get_post_meta( $document_featured_image_ID, '_wp_attachment_image_alt', true );
 
                     }
 
@@ -110,6 +111,55 @@
                 $this->author_z              = '-----------------------------------------------------------------------------------------------';
 
                 $this->author_id             = $query_object->post_author;
+                $this->author_name_display   = get_the_author_meta( 'display_name' );
+                $this->author_name_first     = get_the_author_meta( 'first_name' );
+                $this->author_name_last      = get_the_author_meta( 'last_name' );
+                $this->author_name_nickname  = get_the_author_meta( 'nickname' );
+
+                $this->cats_and_tags_x       = '-----------------------------------------------------------------------------------------------';
+                $this->cats_and_tags_y       = '------------------  T I E   D O C U M E N T   :   C A T S   A N D   T A G S  ------------------';
+                $this->cats_and_tags_z       = '-----------------------------------------------------------------------------------------------';
+
+                $doc_cat_counter             = 0;
+                $doc_cats_array              = array();
+                $document_categories         = get_the_category();
+
+                foreach ( $document_categories as $doc_cat ) {
+
+                    $doc_cat_counter++;
+
+                    $doc_cats_array[$doc_cat_counter]['count'] = $doc_cat->count;
+                    $doc_cats_array[$doc_cat_counter]['desc']  = $doc_cat->description;
+                    $doc_cats_array[$doc_cat_counter]['ID']    = $doc_cat->term_id;
+                    $doc_cats_array[$doc_cat_counter]['name']  = $doc_cat->name;
+                    $doc_cats_array[$doc_cat_counter]['slug']  = $doc_cat->slug;
+                    $doc_cats_array[$doc_cat_counter]['url']   = get_category_link( $doc_cat->term_id );
+
+                }
+
+                $doc_tag_counter             = 0;
+                $doc_tags_array              = array();
+                $document_tags               = get_the_tags();
+
+                if ( $document_tags ) {
+
+                    foreach ( $document_tags as $doc_tag ) {
+
+                        $doc_tag_counter++;
+
+                        $doc_tags_array[$doc_tag_counter]['count'] = $doc_tag->count;
+                        $doc_tags_array[$doc_tag_counter]['desc']  = $doc_tag->description;
+                        $doc_tags_array[$doc_tag_counter]['ID']    = $doc_tag->term_id;
+                        $doc_tags_array[$doc_tag_counter]['name']  = $doc_tag->name;
+                        $doc_tags_array[$doc_tag_counter]['slug']  = $doc_tag->slug;
+                        $doc_tags_array[$doc_tag_counter]['url']   = get_tag_link( $doc_tag->term_id );
+
+                    }
+
+                }
+
+                $this->document_categories   = $doc_cats_array;
+                $this->document_tags   = $doc_tags_array;
 
                 $this->comments_x            = '-----------------------------------------------------------------------------------------------';
                 $this->comments_y            = '-----------------------  T I E   D O C U M E N T   :   C O M M E N T S  -----------------------';
@@ -123,15 +173,17 @@
                 $this->document_y            = '-----------------------  T I E   D O C U M E N T   :   D O C U M E N T  -----------------------';
                 $this->document_z            = '-----------------------------------------------------------------------------------------------';
 
-                $this->document_content      = apply_filters( 'the_content', $query_object->post_content );
+        //      $this->document_content      = apply_filters( 'the_content', $query_object->post_content );
+                $this->document_content      = preg_replace('/<!--(.*)-->/Uis', '', apply_filters( 'the_content', $query_object->post_content ) );
                 $this->document_date_publish = get_the_date();
                 $this->document_date_updated = get_the_modified_date();
                 $this->document_delete_link  = $document_delete_link;
                 $this->document_edit_link    = $document_edit_link;
                 $this->document_excerpt      = $document_excerpt;
+                $this->document_image_alt    = $document_featured_image_alt;
                 $this->document_image_has    = $document_featured_image_has;
                 $this->document_image_ID     = $document_featured_image_ID;
-                $this->document_image_url    = $this->get_featured_image_urls();
+                $this->document_image_url    = $this->get_featured_image_urls( $this->document_id );
                 $this->document_id           = $query_object->ID;
                 $this->document_last_edit_by = get_the_modified_author();
 
@@ -148,11 +200,20 @@
                     $doc_next_any = get_permalink( get_adjacent_post( false, '', false )->ID );
                 }
 
-                if ( get_permalink() == get_permalink( get_adjacent_post( true, '', false )->ID ) ) {
-                    $doc_next_this = 'javascript:;';
+            //  if ( get_permalink() == get_permalink( get_adjacent_post( true, '', false )->ID ) ) {
+            //      $doc_next_this = 'javascript:;';
+            //  } else {
+            //      $doc_next_this = get_permalink( get_adjacent_post( true, '', false )->ID );
+            //  }
+
+            //  if ( ( $doc_next_any == 'javascript:;' ) || ( $doc_next_this == 'javascript:;' ) ) {
+                if ( $doc_next_any == 'javascript:;' ) {
+                    $doc_next_text = 'Nothing Newer';
                 } else {
-                    $doc_next_this = get_permalink( get_adjacent_post( true, '', false )->ID );
+                    $doc_next_text = 'Next';
                 }
+
+
 
                 if ( get_permalink() == get_permalink( get_adjacent_post( false, '', true )->ID ) ) {
                     $doc_prev_any = 'javascript:;';
@@ -160,16 +221,27 @@
                     $doc_prev_any = get_permalink( get_adjacent_post( false, '', true )->ID );
                 }
 
-                if ( get_permalink() == get_permalink( get_adjacent_post( true, '', true )->ID ) ) {
-                    $doc_prev_this = 'javascript:;';
+            //  if ( get_permalink() == get_permalink( get_adjacent_post( true, '', true )->ID ) ) {
+            //      $doc_prev_this = 'javascript:;';
+            //  } else {
+            //      $doc_prev_this = get_permalink( get_adjacent_post( true, '', true )->ID );
+            //  }
+
+            //  if ( ( $doc_prev_any == 'javascript:;' ) || ( $doc_prev_this == 'javascript:;' ) ) {
+                if ( $doc_prev_any == 'javascript:;' ) {
+                    $doc_prev_text = 'Nothing Older';
                 } else {
-                    $doc_prev_this = get_permalink( get_adjacent_post( true, '', true )->ID );
+                    $doc_prev_text = 'Previous';
                 }
+
+
 
                 $this->document_next_any       = $doc_next_any;  // get_permalink( get_adjacent_post( false, '', false )->ID ); // get_next_post_link();
                 $this->document_next_this_term = $doc_next_this; // get_permalink( get_adjacent_post( true,  '', false )->ID ); // get_next_post_link();
+                $this->document_next_label     = $doc_next_text;
                 $this->document_prev_any       = $doc_prev_any;  // get_permalink( get_adjacent_post( false, '', true )->ID );  // get_previous_post_link();
                 $this->document_prev_this_term = $doc_prev_this; // get_permalink( get_adjacent_post( true,  '', true )->ID );  // get_previous_post_link();
+                $this->document_prev_label     = $doc_prev_text;
                 $this->document_parent         = $query_object->post_parent;
                 $this->document_position       = $query_object->menu_order;
                 $this->document_slug           = $query_object->post_name;
