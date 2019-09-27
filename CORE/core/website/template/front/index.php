@@ -4,9 +4,9 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( TYPE8_CORE_LIST . '.php' );
+    require_once( TYPE8_CORE_FRONT . '.php' );
 
-    abstract class CORE_Index extends CORE_List {
+    abstract class CORE_Index extends CORE_Front {
 
         protected function __construct() {
 

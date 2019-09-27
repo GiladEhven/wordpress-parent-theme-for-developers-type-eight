@@ -4,7 +4,7 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
-    require_once( TYPE8_CORE_LIST . '/index.php' );
+    require_once( TYPE8_CORE_FRONT . '/index.php' );
 
     class Template_Index extends CORE_Index {
 
