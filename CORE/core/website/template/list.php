@@ -16,6 +16,8 @@
 
             if ( is_category() ) $this->set_categories_properties();
 
+            if ( is_tag() )      $this->set_tags_properties();
+
         }
 
         protected function set_authors_properties() {
@@ -77,6 +79,34 @@
             $this->list_test_value = 'From CORE_List class...';
 
             $this->categories      = $categories_all;
+
+        }
+
+        protected function set_tags_properties() {
+
+            $tags_array            = get_tags();
+            $tags_counter          = 0;
+            $tags_all              = array();
+
+            foreach ( $tags_array as $tag ) {
+
+                $tags_counter++;
+
+                $tags_all[$tags_counter]['count']                   = $tag->count;
+                $tags_all[$tags_counter]['description']             = $tag->description;
+                $tags_all[$tags_counter]['id']                      = $tag->term_id;
+                $tags_all[$tags_counter]['name']                    = $tag->name;
+                $tags_all[$tags_counter]['slug']                    = $tag->slug;
+                $tags_all[$tags_counter]['url']                     = get_tag_link( $tag->term_id );
+
+            }
+
+            $this->tags_x          = '-----------------------------------------------------------------------------------------------';
+            $this->tags_y          = '----------------------------  C O R E   :   L I S T   :   T A G S  ----------------------------';
+            $this->tags_z          = '-----------------------------------------------------------------------------------------------';
+            $this->tags_test_value = 'From CORE_List class...';
+
+            $this->tags            = $tags_all;
 
         }
 
