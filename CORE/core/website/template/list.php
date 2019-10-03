@@ -16,6 +16,8 @@
 
             if ( is_category() ) $this->set_categories_properties();
 
+            if ( is_search() )   $this->set_searches_properties();
+
             if ( is_tag() )      $this->set_tags_properties();
 
         }
@@ -79,6 +81,15 @@
             $this->list_test_value = 'From CORE_List class...';
 
             $this->categories      = $categories_all;
+
+        }
+
+        protected function set_searches_properties() {
+
+            $this->searches_x          = '-----------------------------------------------------------------------------------------------';
+            $this->searches_y          = '------------------------  C O R E   :   L I S T   :   S E A R C H E S  ------------------------';
+            $this->searches_z          = '-----------------------------------------------------------------------------------------------';
+            $this->searches_test_value = 'From CORE_List class...';
 
         }
 
