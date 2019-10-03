@@ -16,6 +16,8 @@
 
             if ( is_category() ) $this->set_categories_properties();
 
+            if ( is_date() )     $this->set_dates_properties();
+
             if ( is_search() )   $this->set_searches_properties();
 
             if ( is_tag() )      $this->set_tags_properties();
@@ -81,6 +83,15 @@
             $this->list_test_value = 'From CORE_List class...';
 
             $this->categories      = $categories_all;
+
+        }
+
+        protected function set_dates_properties() {
+
+            $this->dates_x          = '-----------------------------------------------------------------------------------------------';
+            $this->dates_y          = '---------------------------  C O R E   :   L I S T   :   D A T E S  ---------------------------';
+            $this->dates_z          = '-----------------------------------------------------------------------------------------------';
+            $this->dates_test_value = 'From CORE_List class...';
 
         }
 
