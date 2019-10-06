@@ -16,7 +16,7 @@
 
         }
 
-        protected function set_header_properties() {
+        protected function set_footer_properties() {
 
             $this->header_x          = '-----------------------------------------------------------------------------------------------';
             $this->header_y          = '---------------------------------  C O R E   :   F O O T E R  ---------------------------------';
