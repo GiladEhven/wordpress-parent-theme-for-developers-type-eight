@@ -61,7 +61,6 @@
             $this->category_x          = '-----------------------------------------------------------------------------------------------';
             $this->category_y          = '-------------------------------  C O R E   :   C A T E G O R Y  -------------------------------';
             $this->category_z          = '-----------------------------------------------------------------------------------------------';
-            $this->category_test_value = 'From CORE_Category class...';
 
             $this->category_description = $query_object->category_description;
             $this->category_entries     = $query_object->category_count;

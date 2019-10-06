@@ -138,7 +138,6 @@
             $this->document_x                     = '-----------------------------------------------------------------------------------------------';
             $this->document_y                     = '-------------------------------  C O R E   :   D O C U M E N T  -------------------------------';
             $this->document_z                     = '-----------------------------------------------------------------------------------------------';
-            $this->document_test_value            = 'From CORE_Document class...';
 
             $this->document_admin_delete_link     = $document_delete_link;
             $this->document_admin_edit_link       = $document_edit_link;

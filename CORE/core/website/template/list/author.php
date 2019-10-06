@@ -61,7 +61,6 @@
             $this->author_x          = '-----------------------------------------------------------------------------------------------';
             $this->author_y          = '---------------------------------  C O R E   :   A U T H O R  ---------------------------------';
             $this->author_z          = '-----------------------------------------------------------------------------------------------';
-            $this->author_test_value = 'From CORE_Author class...';
 
             $this->author_bio           = get_the_author_meta( 'description' );
             $this->author_email         = $query_object->data->user_email;
