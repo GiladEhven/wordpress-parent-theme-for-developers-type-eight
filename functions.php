@@ -13,6 +13,7 @@
             define( 'TYPE8_CORE_ERROR',    get_stylesheet_directory() . '/CORE/core/website/template/error' );
             define( 'TYPE8_CORE_FRONT',    get_stylesheet_directory() . '/CORE/core/website/template/front' );
             define( 'TYPE8_CORE_LIST',     get_stylesheet_directory() . '/CORE/core/website/template/list' );
+            define( 'TYPE8_CORE_PARTIAL',  get_stylesheet_directory() . '/CORE/core/website/template/partial' );
             define( 'TYPE8_CORE_TEMPLATE', get_stylesheet_directory() . '/CORE/core/website/template' );
             define( 'TYPE8_CORE_WEBSITE',  get_stylesheet_directory() . '/CORE/core/website' );
 
