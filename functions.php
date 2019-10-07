@@ -17,6 +17,8 @@
             define( 'TYPE8_CORE_TEMPLATE', get_template_directory() . '/CORE/core/website/template' );
             define( 'TYPE8_CORE_WEBSITE',  get_template_directory() . '/CORE/core/website' );
 
+            define( 'TYPE8_UTILITIES',     get_template_directory() . '/CORE/utilities.php' );
+
             if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_AREA' ) )   define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_AREA',   'col-12' );
             if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_HEADER' ) ) define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_HEADER', 'col-12' );
             if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_LIST' ) )   define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_LIST',   'col-12' );
