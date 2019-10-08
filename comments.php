@@ -119,9 +119,9 @@
 
             ?>
 
-                <header class="<?php $template_comments->fh_comments_header_classes(); ?>" id="comments-header"><?php h_comments_else_header(); ?></header>
+                <header class="<?php $template_comments->fh_comments_header_classes(); ?>" id="comments-header"><?php $template_comments->ah_comments_else_header(); ?></header>
 
-                <section class="<?php $template_comments->fh_comments_list_classes(); ?>" id="comments-list"><?php h_comments_else_section(); ?></section>
+                <section class="<?php $template_comments->fh_comments_list_classes(); ?>" id="comments-list"><?php $template_comments->ah_comments_else_section(); ?></section>
 
             <?php
 
