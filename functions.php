@@ -24,6 +24,47 @@
             if ( ! defined( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN' ) )   define( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN',   false );
             if ( ! defined( 'TYPE8_SET_COMMENTS_TYPE' ) )               define( 'TYPE8_SET_COMMENTS_TYPE',               'comment' );
 
+            $this->support();
+
+        }
+
+        public function support() {
+
+            add_action( 'after_setup_theme', function() {
+
+                add_editor_style( get_stylesheet_directory_uri() . '/statics/css/editor.css' );
+
+                add_theme_support( 'automatic-feed-links' );
+
+                add_theme_support(
+                    'html5',
+                    array(
+                        'caption',
+                        'comment-form',
+                        'comment-list',
+                        'gallery',
+                        'search-form',
+                    )
+                );
+
+                add_theme_support(
+                    'post-thumbnails',
+                    array(
+                        'page',
+                        'post',
+                    )
+                );
+
+                add_theme_support( 'title-tag' );
+
+            } );
+        
+            add_action( 'init', function() {
+        
+                add_post_type_support( 'page', 'excerpt' );
+        
+            } );
+        
         }
 
     }
