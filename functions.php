@@ -19,14 +19,10 @@
 
             define( 'TYPE8_UTILITIES',     get_template_directory() . '/CORE/utilities.php' );
 
-            if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_AREA' ) )   define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_AREA',   'col-12' );
-            if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_HEADER' ) ) define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_HEADER', 'col-12' );
-            if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_LIST' ) )   define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_LIST',   'col-12' );
             if ( ! defined( 'TYPE8_SET_COMMENTS_STYLE' ) )              define( 'TYPE8_SET_COMMENTS_STYLE',              'ol' );
             if ( ! defined( 'TYPE8_SET_COMMENTS_AVATAR_SIZE' ) )        define( 'TYPE8_SET_COMMENTS_AVATAR_SIZE',        '64' );
             if ( ! defined( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN' ) )   define( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN',   false );
             if ( ! defined( 'TYPE8_SET_COMMENTS_TYPE' ) )               define( 'TYPE8_SET_COMMENTS_TYPE',               'comment' );
-            if ( ! defined( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_FOOTER' ) ) define( 'TYPE8_CSS_CLASSES_FOR_COMMENTS_FOOTER', 'col-12' );
 
         }
 

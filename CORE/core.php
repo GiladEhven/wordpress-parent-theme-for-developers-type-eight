@@ -115,24 +115,27 @@
         public function ah_comments_list_begin()             { do_action( 'ah_comments_list_begin' );             }
         public function ah_comments_list_end()               { do_action( 'ah_comments_list_end' );               }
 
-        public function fh_body_footer_classes()             { echo apply_filters( 'fh_body_footer_classes',           'container-fluid' );    }
-        public function fh_body_header_classes()             { echo apply_filters( 'fh_body_header_classes',           'container-fluid' );    }
-        public function fh_body_main_classes()               { echo apply_filters( 'fh_body_main_classes',             'container' );          }
-        public function fh_body_main_div_classes()           { echo apply_filters( 'fh_body_main_div_classes',         'row' );                }
+        public function fh_body_footer_classes()             { echo apply_filters( 'fh_body_footer_classes',             'container-fluid' );    }
+        public function fh_body_header_classes()             { echo apply_filters( 'fh_body_header_classes',             'container-fluid' );    }
+        public function fh_body_main_classes()               { echo apply_filters( 'fh_body_main_classes',               'container' );          }
+        public function fh_body_main_div_classes()           { echo apply_filters( 'fh_body_main_div_classes',           'row' );                }
 
-        public function fh_comments_classes()                { echo apply_filters( 'fh_comments_classes',              'col-12' );             }
-        public function fh_comments_footer_classes()         { echo apply_filters( 'fh_comments_footer_classes',       'col-12' );             }
-        public function fh_comments_header_classes()         { echo apply_filters( 'fh_comments_header_classes',       'col-12' );             }
-        public function fh_comments_list_classes()           { echo apply_filters( 'fh_comments_list_classes',         'col-12' );             }
+        public function fh_comments_classes()                { echo apply_filters( 'fh_comments_classes',                'col-12' );             }
+        public function fh_comments_footer_classes()         { echo apply_filters( 'fh_comments_footer_classes',         'row' );                }
+        public function fh_comments_footer_div_classes()     { echo apply_filters( 'fh_comments_footer_div_classes',     'col-12' );             }
+        public function fh_comments_header_classes()         { echo apply_filters( 'fh_comments_header_classes',         'row' );                }
+        public function fh_comments_header_div_classes()     { echo apply_filters( 'fh_comments_header_div_classes',     'col-12' );             }
+        public function fh_comments_list_classes()           { echo apply_filters( 'fh_comments_list_classes',           'row' );                }
+        public function fh_comments_list_div_classes()       { echo apply_filters( 'fh_comments_list_div_classes',       'col-12' );             }
 
-        public function fh_document_navigator_classes()      { echo apply_filters( 'fh_document_navigator_classes',    'col-12' );             }
+        public function fh_document_navigator_classes()      { echo apply_filters( 'fh_document_navigator_classes',      'col-12' );             }
 
-        public function fh_entry_article_classes()           { echo apply_filters( 'fh_entry_article_classes',         'row' );                }
-        public function fh_entry_article_footer_classes()    { echo apply_filters( 'fh_entry_article_footer_classes',  'col-12' );             }
-        public function fh_entry_article_header_classes()    { echo apply_filters( 'fh_entry_article_header_classes',  'col-12' );             }
-        public function fh_entry_article_section_classes()   { echo apply_filters( 'fh_entry_article_section_classes', 'col-12' );             }
+        public function fh_entry_article_classes()           { echo apply_filters( 'fh_entry_article_classes',           'row' );                }
+        public function fh_entry_article_footer_classes()    { echo apply_filters( 'fh_entry_article_footer_classes',    'col-12' );             }
+        public function fh_entry_article_header_classes()    { echo apply_filters( 'fh_entry_article_header_classes',    'col-12' );             }
+        public function fh_entry_article_section_classes()   { echo apply_filters( 'fh_entry_article_section_classes',   'col-12' );             }
 
-        public function fh_list_navigator_classes()          { echo apply_filters( 'fh_list_navigator_classes',        'col-12' );             }
+        public function fh_list_navigator_classes()          { echo apply_filters( 'fh_list_navigator_classes',          'col-12' );             }
 
         public function view() {
 

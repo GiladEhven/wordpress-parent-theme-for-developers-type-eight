@@ -6,27 +6,41 @@
 
     if ( post_password_required() ) return;
 
-    h_comments_before();
+    require_once( TYPE8_CORE_PARTIAL . '/comments.php' );
+
+    class Template_Comments extends CORE_Comments {
+
+        public function __construct() {
+
+            parent::__construct();
+
+        }
+
+    }
+
+    $template_comments = new Template_Comments();
+
+    $template_comments->ah_comments_before();
 
 ?>
 
-<div class="<?php echo TYPE8_CSS_CLASSES_FOR_COMMENTS_AREA; ?>" id="comments-area">
+<div class="<?php $template_comments->fh_comments_classes(); ?>" id="comments-area">
 
     <?php
 
-        h_comments_begin();
+        $template_comments->ah_comments_begin();
 
         if ( have_comments() ) {
 
-            h_comments_if_begin();
+            $template_comments->ah_comments_if_begin();
 
             ?>
 
-            <header class="row" id="comments-header">
+            <header class="<?php $template_comments->fh_comments_header_classes(); ?>" id="comments-header">
 
-                <div class="<?php echo TYPE8_CSS_CLASSES_FOR_COMMENTS_HEADER; ?>">
+                <div class="<?php $template_comments->fh_comments_header_div_classes(); ?>">
 
-                    <?php h_comments_header_begin(); ?>
+                    <?php $template_comments->ah_comments_header_begin(); ?>
 
                     <h2>
 
@@ -52,17 +66,17 @@
 
                     </h2>
 
-                    <?php h_comments_header_end(); ?>
+                    <?php $template_comments->ah_comments_header_end(); ?>
 
                 </div>
 
             </header>
 
-            <section class="row" id="comments-list">
+            <section class="<?php $template_comments->fh_comments_list_classes(); ?>" id="comments-list">
 
-                <div class="<?php echo TYPE8_CSS_CLASSES_FOR_COMMENTS_LIST; ?>">
+                <div class="<?php $template_comments->fh_comments_list_div_classes(); ?>">
 
-                    <?php h_comments_list_begin(); ?>
+                    <?php $template_comments->ah_comments_list_begin(); ?>
 
                     <?php the_comments_navigation(); ?>
 
@@ -89,7 +103,7 @@
 
                     ?>
 
-                    <?php h_comments_list_end(); ?>
+                    <?php $template_comments->ah_comments_list_end(); ?>
 
                 </div>
 
@@ -97,34 +111,33 @@
 
             <?php
 
-            h_comments_if_end();
+            $template_comments->ah_comments_if_end();
 
         } else {
 
-            h_comments_else_begin();
+            $template_comments->ah_comments_else_begin();
 
             ?>
 
-                <header class="row" id="comments-header"><?php h_comments_else_header(); ?></header>
+                <header class="<?php $template_comments->fh_comments_header_classes(); ?>" id="comments-header"><?php h_comments_else_header(); ?></header>
 
-                <section class="row" id="comments-list"><?php h_comments_else_section(); ?></section>
-
+                <section class="<?php $template_comments->fh_comments_list_classes(); ?>" id="comments-list"><?php h_comments_else_section(); ?></section>
 
             <?php
 
-            h_comments_else_end();
+            $template_comments->ah_comments_else_end();
 
         }
 
         ?>
 
-        <footer class="row" id="comments-footer">
+        <footer class="<?php $template_comments->fh_comments_footer_classes(); ?>" id="comments-footer">
 
-            <div class="<?php echo TYPE8_CSS_CLASSES_FOR_COMMENTS_FOOTER; ?>">
+            <div class="<?php $template_comments->fh_comments_footer_div_classes(); ?>">
 
                 <?php
 
-                    h_comments_footer_begin();
+                    $template_comments->ah_comments_footer_begin();
 
                     $aria_req      = ( $req ? " aria-required='true'" : '' );
 
@@ -157,7 +170,7 @@
                         'title_reply_to'       => __( 'Reply to %s&rsquo;s comment', 'type-eight' ),
                     ) );
 
-                    h_comments_footer_end();
+                    $template_comments->ah_comments_footer_end();
 
                 ?>
 
@@ -169,4 +182,4 @@
 
 <?php
 
-    h_comments_after();
+    $template_comments->ah_comments_after();
