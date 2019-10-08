@@ -8,6 +8,14 @@
 
         public function __construct() {
 
+            $this->constants();
+
+            $this->support();
+
+        }
+
+        public function constants() {
+
             define( 'TYPE8_CORE_CORE',     get_template_directory() . '/CORE/core' );
             define( 'TYPE8_CORE_DOCUMENT', get_template_directory() . '/CORE/core/website/template/document' );
             define( 'TYPE8_CORE_ERROR',    get_template_directory() . '/CORE/core/website/template/error' );
@@ -23,8 +31,6 @@
             if ( ! defined( 'TYPE8_SET_COMMENTS_AVATAR_SIZE' ) )        define( 'TYPE8_SET_COMMENTS_AVATAR_SIZE',        '64' );
             if ( ! defined( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN' ) )   define( 'TYPE8_SET_COMMENTS_REVERSE_CHILDREN',   false );
             if ( ! defined( 'TYPE8_SET_COMMENTS_TYPE' ) )               define( 'TYPE8_SET_COMMENTS_TYPE',               'comment' );
-
-            $this->support();
 
         }
 
