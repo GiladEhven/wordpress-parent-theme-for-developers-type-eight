@@ -16,6 +16,8 @@
 
             $this->enqueue_font_awesome( array( 'all' ) );
 
+            $this->enqueue_jquery();
+
             $this->set_browser_classes();
 
             $this->set_template_properties();
@@ -113,6 +115,33 @@
                 return $link;
 
             }, 10, 2);
+
+        }
+
+        protected function enqueue_jquery() {
+
+            $integrity = 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=';
+            $version   = '3.3.1';
+
+            add_action( 'wp_enqueue_scripts', function() use( $version ) {
+
+                wp_deregister_script( 'jquery' );
+                wp_register_script( 'jquery', 'https://code.jquery.com/jquery-' . $version . '.min.js', array(), null, true );
+                wp_enqueue_script( 'jquery' );
+
+            });
+
+            add_filter( 'script_loader_tag', function ( $tag, $handle, $src ) use( $version, $integrity ) {
+
+                if ( $handle == 'jquery' ) {
+
+                    $tag = '<script id="' . $handle . '" src="https://code.jquery.com/jquery-' . $version . '.min.js" type="text/javascript" crossorigin="anonymous" integrity="' . $integrity . '"></script>' . "\n";
+
+                }
+
+                return $tag;
+
+            }, 10, 3 );
 
         }
 
