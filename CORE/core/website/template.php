@@ -14,6 +14,8 @@
 
             $this->enqueue_bootstrap();
 
+            $this->enqueue_font_awesome( array( 'all' ) );
+
             $this->set_browser_classes();
 
             $this->set_template_properties();
@@ -54,6 +56,57 @@
                 if ( $handle == 'bootstrap-style' ) {
 
                     $link = str_replace( 'media=\'all\' />', 'media=\'all\' crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />', $link );
+
+                }
+
+                return $link;
+
+            }, 10, 2);
+
+        }
+
+        protected function enqueue_font_awesome( $collections ) {
+
+            if ( in_array( 'all', $collections ) ) {
+
+                add_action( 'wp_enqueue_scripts', function() {
+
+                    wp_enqueue_style( 'font-awesome-all', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css', array(), null, 'all' );
+
+                });
+
+            } else {
+
+                foreach ( $collections as $collection ) {
+
+                    add_action( 'wp_enqueue_scripts', function() use( $collection ) {
+
+                        wp_enqueue_style( 'font-awesome-' . $collection, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/' . $collection . '.min.css', array(), null, 'all' );
+
+                    });
+
+                }
+
+            }
+
+            add_filter( 'style_loader_tag', function( $link, $handle ) use ( $collections ) {
+
+                switch ( $handle ) {
+
+                    case 'font-awesome-all'     : $integrity = 'sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ='; break;
+                    case 'font-awesome-brands'  : $integrity = 'sha256-UZFVAO0Fn854ajzdWnJ2Oze6k1X4LNqE2RJPW3MBfq8='; break;
+                    case 'font-awesome-regular' : $integrity = 'sha256-1xUFPzbRrl0qOLXDyBNYpuBMMThdiVPJEtZx24deLeg='; break;
+                    case 'font-awesome-solid'   : $integrity = 'sha256-8DcgqUGhWHHsTLj1qcGr0OuPbKkN1RwDjIbZ6DKh/RA='; break;
+                    default                     : $integrity = '';
+
+                }
+
+                $exploded   = explode( '-', $handle );
+                $collection = end( $exploded );
+                
+                if ( in_array( $collection, $collections ) ) {
+
+                    $link = str_replace( 'media=\'all\' />', 'media=\'all\' crossorigin="anonymous" integrity="' . $integrity . '" />', $link );
 
                 }
 
