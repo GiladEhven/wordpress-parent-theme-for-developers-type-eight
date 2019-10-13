@@ -8,9 +8,19 @@
 
         public function __construct() {
 
+            if ( is_admin() ) $this->admin();
+
             $this->constants();
 
             $this->support();
+
+        }
+
+        public function admin() {
+
+            $this->constants();
+
+            require_once( get_template_directory() . '/CORE/core/website/screen/other.php' );
 
         }
 
