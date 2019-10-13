@@ -16,6 +16,22 @@
 
         }
 
+        public function ah_comments_after()           { do_action( 'ah_comments_after' );           }
+        public function ah_comments_before()          { do_action( 'ah_comments_before' );          }
+        public function ah_comments_begin()           { do_action( 'ah_comments_begin' );           }
+        public function ah_comments_else_begin()      { do_action( 'ah_comments_else_begin' );      }
+        public function ah_comments_else_end()        { do_action( 'ah_comments_else_end' );        }
+        public function ah_comments_else_header()     { do_action( 'ah_comments_else_header' );     }
+        public function ah_comments_else_section()    { do_action( 'ah_comments_else_section' );    }
+        public function ah_comments_footer_begin()    { do_action( 'ah_comments_footer_begin' );    }
+        public function ah_comments_footer_end()      { do_action( 'ah_comments_footer_end' );      }
+        public function ah_comments_header_begin()    { do_action( 'ah_comments_header_begin' );    }
+        public function ah_comments_header_end()      { do_action( 'ah_comments_header_end' );      }
+        public function ah_comments_if_begin()        { do_action( 'ah_comments_if_begin' );        }
+        public function ah_comments_if_end()          { do_action( 'ah_comments_if_end' );          }
+        public function ah_comments_list_begin()      { do_action( 'ah_comments_list_begin' );      }
+        public function ah_comments_list_end()        { do_action( 'ah_comments_list_end' );        }
+
         protected function set_comments_properties() {
 
             $this->comments_x          = '-----------------------------------------------------------------------------------------------';

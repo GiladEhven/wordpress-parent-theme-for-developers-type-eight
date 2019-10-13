@@ -88,7 +88,7 @@
         public function ah_video_entry_content_before()      { do_action( 'ah_video_entry_content_before' );      }
         public function ah_video_entry_footer()              { do_action( 'ah_video_entry_footer' );              }
         public function ah_video_entry_header()              { do_action( 'ah_video_entry_header' );              }
-
+/*
         public function ah_comments_after()                  { do_action( 'ah_comments_after' );                  }
         public function ah_comments_before()                 { do_action( 'ah_comments_before' );                 }
         public function ah_comments_begin()                  { do_action( 'ah_comments_begin' );                  }
@@ -104,7 +104,7 @@
         public function ah_comments_if_end()                 { do_action( 'ah_comments_if_end' );                 }
         public function ah_comments_list_begin()             { do_action( 'ah_comments_list_begin' );             }
         public function ah_comments_list_end()               { do_action( 'ah_comments_list_end' );               }
-
+*/
         public function fh_body_footer_classes()             { echo apply_filters( 'fh_body_footer_classes',             'container-fluid' );    }
         public function fh_body_header_classes()             { echo apply_filters( 'fh_body_header_classes',             'container-fluid' );    }
         public function fh_body_main_classes()               { echo apply_filters( 'fh_body_main_classes',               'container' );          }
