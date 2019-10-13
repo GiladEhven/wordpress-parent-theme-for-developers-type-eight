@@ -33,14 +33,6 @@
         public function ah_get_template_part_after()         { do_action( 'ah_get_template_part_after' );         }
         public function ah_get_template_part_before()        { do_action( 'ah_get_template_part_before' );        }
 
-        public function ah_image_entry_article_begin()       { do_action( 'ah_image_entry_article_begin' );       }
-        public function ah_image_entry_article_end()         { do_action( 'ah_image_entry_article_end' );         }
-        public function ah_image_entry_content()             { do_action( 'ah_image_entry_content' );             }
-        public function ah_image_entry_content_after()       { do_action( 'ah_image_entry_content_after' );       }
-        public function ah_image_entry_content_before()      { do_action( 'ah_image_entry_content_before' );      }
-        public function ah_image_entry_footer()              { do_action( 'ah_image_entry_footer' );              }
-        public function ah_image_entry_header()              { do_action( 'ah_image_entry_header' );              }
-
         public function ah_loop_comments_after()             { do_action( 'ah_loop_comments_after' );             }
         public function ah_loop_comments_before()            { do_action( 'ah_loop_comments_before' );            }
         public function ah_loop_else_core()                  { do_action( 'ah_loop_else_core' );                  }
