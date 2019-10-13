@@ -22,6 +22,7 @@
             define( 'TYPE8_CORE_FRONT',    get_template_directory() . '/CORE/core/website/template/front' );
             define( 'TYPE8_CORE_LIST',     get_template_directory() . '/CORE/core/website/template/list' );
             define( 'TYPE8_CORE_PARTIAL',  get_template_directory() . '/CORE/core/website/template/partial' );
+            define( 'TYPE8_CORE_SCREEN',   get_template_directory() . '/CORE/core/website/screen' );
             define( 'TYPE8_CORE_TEMPLATE', get_template_directory() . '/CORE/core/website/template' );
             define( 'TYPE8_CORE_WEBSITE',  get_template_directory() . '/CORE/core/website' );
 
