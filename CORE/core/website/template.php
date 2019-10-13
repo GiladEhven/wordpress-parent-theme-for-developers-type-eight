@@ -24,6 +24,11 @@
 
         }
 
+        public function ah_body_begin()                      { do_action( 'ah_body_begin' );                      }
+        public function ah_body_end()                        { do_action( 'ah_body_end' );                        }
+        public function ah_body_footer()                     { do_action( 'ah_body_footer' );                     }
+        public function ah_body_header()                     { do_action( 'ah_body_header' );                     }
+
         protected function enqueue_bootstrap() {
 
             add_action( 'wp_enqueue_scripts', function() {

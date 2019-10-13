@@ -30,11 +30,6 @@
         public function ah_audio_entry_footer()              { do_action( 'ah_audio_entry_footer' );              }
         public function ah_audio_entry_header()              { do_action( 'ah_audio_entry_header' );              }
 
-        public function ah_body_begin()                      { do_action( 'ah_body_begin' );                      }
-        public function ah_body_end()                        { do_action( 'ah_body_end' );                        }
-        public function ah_body_footer()                     { do_action( 'ah_body_footer' );                     }
-        public function ah_body_header()                     { do_action( 'ah_body_header' );                     }
-
         public function ah_entry_article_begin()             { do_action( 'ah_entry_article_begin' );             }
         public function ah_entry_article_content_after()     { do_action( 'ah_entry_article_content_after' );     }
         public function ah_entry_article_content_before()    { do_action( 'ah_entry_article_content_before' );    }
