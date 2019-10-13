@@ -41,11 +41,6 @@
         public function ah_get_template_part_after()         { do_action( 'ah_get_template_part_after' );         }
         public function ah_get_template_part_before()        { do_action( 'ah_get_template_part_before' );        }
 
-        public function ah_head_add_link_tags()              { do_action( 'ah_head_add_link_tags' );              }
-        public function ah_head_add_meta_tags()              { do_action( 'ah_head_add_meta_tags' );              }
-        public function ah_head_begin()                      { do_action( 'ah_head_begin' );                      }
-        public function ah_head_end()                        { do_action( 'ah_head_end' );                        }
-
         public function ah_image_entry_article_begin()       { do_action( 'ah_image_entry_article_begin' );       }
         public function ah_image_entry_article_end()         { do_action( 'ah_image_entry_article_end' );         }
         public function ah_image_entry_content()             { do_action( 'ah_image_entry_content' );             }

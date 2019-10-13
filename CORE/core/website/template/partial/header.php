@@ -16,6 +16,11 @@
 
         }
 
+        public function ah_head_add_link_tags()    { do_action( 'ah_head_add_link_tags' );    }
+        public function ah_head_add_meta_tags()    { do_action( 'ah_head_add_meta_tags' );    }
+        public function ah_head_begin()            { do_action( 'ah_head_begin' );            }
+        public function ah_head_end()              { do_action( 'ah_head_end' );              }
+
         protected function set_header_properties() {
 
             $this->header_x          = '-----------------------------------------------------------------------------------------------';
