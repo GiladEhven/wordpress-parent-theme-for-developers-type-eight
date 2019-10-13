@@ -81,14 +81,6 @@
         public function ah_text_entry_footer()               { do_action( 'ah_text_entry_footer' );               }
         public function ah_text_entry_header()               { do_action( 'ah_text_entry_header' );               }
 
-        public function ah_video_entry_article_begin()       { do_action( 'ah_video_entry_article_begin' );       }
-        public function ah_video_entry_article_end()         { do_action( 'ah_video_entry_article_end' );         }
-        public function ah_video_entry_content()             { do_action( 'ah_video_entry_content' );             }
-        public function ah_video_entry_content_after()       { do_action( 'ah_video_entry_content_after' );       }
-        public function ah_video_entry_content_before()      { do_action( 'ah_video_entry_content_before' );      }
-        public function ah_video_entry_footer()              { do_action( 'ah_video_entry_footer' );              }
-        public function ah_video_entry_header()              { do_action( 'ah_video_entry_header' );              }
-
         public function fh_body_footer_classes()             { echo apply_filters( 'fh_body_footer_classes',             'container-fluid' );    }
         public function fh_body_header_classes()             { echo apply_filters( 'fh_body_header_classes',             'container-fluid' );    }
         public function fh_body_main_classes()               { echo apply_filters( 'fh_body_main_classes',               'container' );          }
