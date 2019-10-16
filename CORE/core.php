@@ -47,11 +47,6 @@
         public function ah_loop_while_begin()                { do_action( 'ah_loop_while_begin' );                }
         public function ah_loop_while_end()                  { do_action( 'ah_loop_while_end' );                  }
 
-        public function ah_main_after()                      { do_action( 'ah_main_after' );                      }
-        public function ah_main_before()                     { do_action( 'ah_main_before' );                     }
-        public function ah_main_begin()                      { do_action( 'ah_main_begin' );                      }
-        public function ah_main_end()                        { do_action( 'ah_main_end' );                        }
-
         public function ah_nav_post_begin()                  { do_action( 'ah_nav_post_begin' );                  }
         public function ah_nav_post_end()                    { do_action( 'ah_nav_post_end' );                    }
         public function ah_nav_post_paginator_after()        { do_action( 'ah_nav_post_paginator_after' );        }
