@@ -20,7 +20,21 @@
 
             $this->constants();
 
-            require_once( get_template_directory() . '/CORE/core/website/screen/other.php' );
+            add_action( 'current_screen', function() {
+
+                $current_screen = get_current_screen();
+            
+                if ( $current_screen->id === "profile" ) {
+            
+                    require_once( get_template_directory() . '/CORE/core/website/screen/other/profile.php' );
+            
+                } else {
+
+                    require_once( get_template_directory() . '/CORE/core/website/screen/other.php' );
+
+                }
+
+            });
 
         }
 
