@@ -18,7 +18,25 @@
 
         }
 
-        protected function set_document_properties( $query_object ) {
+        protected function get_featured_image_urls( $post_id ) {
+
+            $image_sizes_array = get_intermediate_image_sizes();
+
+            $images_array = array();
+
+            foreach( $image_sizes_array as $image_size ) {
+
+                $current_pair = array( $image_size => get_the_post_thumbnail_url( $post_id, $image_size ) );
+                $images_array = array_merge( $images_array, $current_pair );
+
+
+            }
+
+            return $images_array;
+
+        }
+
+    protected function set_document_properties( $query_object ) {
 
 
             $document_date_fetched_pub     = $query_object->post_date;
@@ -155,6 +173,7 @@
             $this->document_image_alt             = $document_featured_image_alt;
             $this->document_image_has             = $document_featured_image_has;
             $this->document_image_ID              = $document_featured_image_ID;
+            $this->document_image_list            = $this->get_featured_image_urls( $post_id );
             $this->document_id                    = $query_object->ID;
             $this->document_last_edit_by          = get_the_modified_author();
             $this->document_tags                  = $doc_tags_array;
