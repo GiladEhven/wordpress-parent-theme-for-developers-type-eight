@@ -12,7 +12,29 @@
 
             parent::__construct();
 
+            $this->add_user_contact_methods();
+
             $this->set_profile_properties();
+
+        }
+
+        protected function add_user_contact_methods() {
+
+            add_filter( 'user_contactmethods', function( $user_contact ) {
+
+                $user_contact['facebook']  = __( 'Facebook' );
+                $user_contact['github']    = __( 'GitHub' );
+                $user_contact['instagram'] = __( 'Instagram' );
+                $user_contact['linkedin']  = __( 'LinkedIn' );
+                $user_contact['pinterest'] = __( 'Pinterest' );
+                $user_contact['quora']     = __( 'Quora' );
+                $user_contact['skype']     = __( 'Skype' );
+                $user_contact['twitter']   = __( 'Twitter' );
+                $user_contact['youtube']   = __( 'YouTube' );
+
+                return $user_contact;
+
+            });
 
         }
 
