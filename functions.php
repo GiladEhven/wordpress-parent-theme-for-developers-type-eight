@@ -65,7 +65,11 @@
 
                 add_editor_style( get_stylesheet_directory_uri() . '/statics/css/editor.css' );
 
+                add_theme_support( 'align-wide' );
+
                 add_theme_support( 'automatic-feed-links' );
+
+                add_theme_support( 'editor-styles' );
 
                 add_theme_support(
                     'html5',
@@ -85,6 +89,8 @@
                         'post',
                     )
                 );
+
+                add_theme_support( 'responsive-embeds' );
 
                 add_theme_support( 'title-tag' );
 
