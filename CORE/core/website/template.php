@@ -24,15 +24,20 @@
 
         }
 
-        public function ah_body_begin()     { do_action( 'ah_body_begin' );     }
-        public function ah_body_end()       { do_action( 'ah_body_end' );       }
-        public function ah_body_footer()    { do_action( 'ah_body_footer' );    }
-        public function ah_body_header()    { do_action( 'ah_body_header' );    }
+        public function ah_body_begin()               { do_action( 'ah_body_begin' );     }
+        public function ah_body_end()                 { do_action( 'ah_body_end' );       }
+        public function ah_body_footer()              { do_action( 'ah_body_footer' );    }
+        public function ah_body_header()              { do_action( 'ah_body_header' );    }
 
-        public function ah_main_after()     { do_action( 'ah_main_after' );     }
-        public function ah_main_before()    { do_action( 'ah_main_before' );    }
-        public function ah_main_begin()     { do_action( 'ah_main_begin' );     }
-        public function ah_main_end()       { do_action( 'ah_main_end' );       }
+        public function ah_main_after()               { do_action( 'ah_main_after' );     }
+        public function ah_main_before()              { do_action( 'ah_main_before' );    }
+        public function ah_main_begin()               { do_action( 'ah_main_begin' );     }
+        public function ah_main_end()                 { do_action( 'ah_main_end' );       }
+
+        public function fh_body_footer_classes()      { echo apply_filters( 'fh_body_footer_classes',             'container-fluid' );    }
+        public function fh_body_header_classes()      { echo apply_filters( 'fh_body_header_classes',             'container-fluid' );    }
+        public function fh_body_main_classes()        { echo apply_filters( 'fh_body_main_classes',               'container' );          }
+        public function fh_body_main_div_classes()    { echo apply_filters( 'fh_body_main_div_classes',           'row' );                }
 
         protected function enqueue_bootstrap() {
 
