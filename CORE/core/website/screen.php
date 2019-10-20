@@ -12,7 +12,7 @@
 
             parent::__construct();
 
-            $this->set_admin_footer_text();
+            $this->set_admin_footer_thank_you();
 
             $this->enqueue_for_admin();
 
@@ -20,7 +20,7 @@
 
         }
 
-        protected function set_admin_footer_text() {
+        protected function set_admin_footer_thank_you() {
 
             add_filter( 'admin_footer_text', function() {
 
