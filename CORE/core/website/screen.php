@@ -12,9 +12,21 @@
 
             parent::__construct();
 
+            $this->set_admin_footer_text();
+
             $this->enqueue_for_admin();
 
             $this->set_screen_properties();
+
+        }
+
+        protected function set_admin_footer_text() {
+
+            add_filter( 'admin_footer_text', function() {
+
+                return '<em>Thank you for creating with <a href="https://github.com/GiladEhven/wordpress-parent-theme-for-developers-type-eight" target="_blank">WordPress Parent Theme For Developers Type Eight</a> by <a href="https://gilad-ehven.com" target="_blank">Gilad Ehven</a>.</em>';
+
+            });
 
         }
 
