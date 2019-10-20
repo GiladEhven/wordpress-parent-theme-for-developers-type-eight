@@ -187,6 +187,12 @@
             $this->document_title                 = $query_object->post_title;
             $this->document_type                  = $query_object->post_type;
 
+            if ( $this->document_type == 'page' ) {
+                $this->document_template          = 'page';
+            } elseif ( $this->document_type == 'post' ) {
+                $this->document_template          = 'single';
+            }
+
         }
 
     }
