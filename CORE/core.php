@@ -52,14 +52,6 @@
         public function ah_nav_post_paginator_after()        { do_action( 'ah_nav_post_paginator_after' );        }
         public function ah_nav_post_paginator_before()       { do_action( 'ah_nav_post_paginator_before' );       }
 
-        public function fh_comments_classes()                { echo apply_filters( 'fh_comments_classes',                'col-12' );             }
-        public function fh_comments_footer_classes()         { echo apply_filters( 'fh_comments_footer_classes',         'row' );                }
-        public function fh_comments_footer_div_classes()     { echo apply_filters( 'fh_comments_footer_div_classes',     'col-12' );             }
-        public function fh_comments_header_classes()         { echo apply_filters( 'fh_comments_header_classes',         'row' );                }
-        public function fh_comments_header_div_classes()     { echo apply_filters( 'fh_comments_header_div_classes',     'col-12' );             }
-        public function fh_comments_list_classes()           { echo apply_filters( 'fh_comments_list_classes',           'row' );                }
-        public function fh_comments_list_div_classes()       { echo apply_filters( 'fh_comments_list_div_classes',       'col-12' );             }
-
         public function fh_document_navigator_classes()      { echo apply_filters( 'fh_document_navigator_classes',      'col-12' );             }
 
         public function fh_entry_article_classes()           { echo apply_filters( 'fh_entry_article_classes',           'row' );                }
