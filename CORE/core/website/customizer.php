@@ -35,30 +35,45 @@
             add_action( 'customize_register', function( $wp_customize ) {
 
                 $wp_customize->add_setting( 'background_color' , array(
-                    'default'   => '#ffffff',
-                    'transport' => 'postMessage',
-                ) );
+                    'capability'           => 'edit_theme_options',
+                    'default'              => '#ffffff',
+                    'dirty'                => false,
+                    'sanitize_callback'    => '',
+                    'sanitize_js_callback' => '',
+                    'theme_supports'       => '',
+                    'transport'            => 'postMessage',
+                    'type'                 => 'theme_mod',
+                    'validate_callback'    => '',
+                ));
 
                 $wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'background_color', array(
-                    'label'     => 'Body Background Color',
-                    'section'   => 'type_eight_colors',
-                    'settings'  => 'background_color',
-                ) ) );
+                    'capability'           => 'edit_theme_options',
+                    'description'          => esc_html__( 'Color picker for body background' ),
+                    'label'                => __( 'Body Background Color' ),
+                    'priority'             => 10,
+                    'section'              => 'type_eight_colors',
+                    'settings'             => 'background_color',
+                )));
 
                 $wp_customize->add_section( 'type_eight_colors' , array(
-                    'title'     => 'Type 8 (Parent Theme) Colors',
-                    'panel'     => 'type_eight_customizations',
-                    'priority'  => 120,
-                ) );
+                    'active_callback'      => '',
+                    'capability'           => 'edit_theme_options',
+                    'description'          => esc_html__( 'Type Eight Parent Theme Colors' ),
+                    'description_hidden'   => 'false',
+                    'panel'                => 'type_eight_customizations',
+                    'priority'             => 120,
+                    'theme_supports'       => '',
+                    'title'                => __( 'Type Eight (Parent Theme) Colors' ),
+                ));
 
                 $wp_customize->add_panel( 'type_eight_customizations' , array(
-                    'active_callback' => '',
-                    'capability'      => 'edit_theme_options',
-                    'description'     => esc_html__( 'Type Eight Parent Theme Customization Settings' ),
-                    'priority'        => 160,
-                    'theme_supports'  => '',
-                    'title'           => __( 'Type Eight (Parent Theme) Customizations' ),
-                ) );
+                    'active_callback'      => '',
+                    'capability'           => 'edit_theme_options',
+                    'description'          => esc_html__( 'Type Eight Parent Theme Customization Settings' ),
+                    'priority'             => 160,
+                    'theme_supports'       => '',
+                    'title'                => __( 'Type Eight (Parent Theme) Customizations' ),
+                ));
 
                 $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
                 $wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
