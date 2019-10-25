@@ -20,11 +20,23 @@
 
         public function register_customizer_components() {
 
+            add_action( 'customize_preview_init', function() {
+
+                wp_enqueue_script(
+                    'type-eight-customizer',
+                    get_template_directory_uri() . '/CORE/assets/js/customizer.js',
+                    array( 'jquery', 'customize-preview' ),
+                    '',
+                    true
+                );
+
+            });
+
             add_action( 'customize_register', function( $wp_customize ) {
 
                 $wp_customize->add_setting( 'background_color' , array(
                     'default'   => '#ffffff',
-                    'transport' => 'refresh',
+                    'transport' => 'postMessage',
                 ) );
 
                 $wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'background_color', array(
@@ -37,6 +49,9 @@
                     'title'     => 'Type 8 (Parent Theme) Colors',
                     'priority'  => 120,
                 ) );
+
+                $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+                $wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 
             });
 
