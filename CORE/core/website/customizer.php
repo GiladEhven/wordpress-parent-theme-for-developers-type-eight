@@ -47,7 +47,17 @@
 
                 $wp_customize->add_section( 'type_eight_colors' , array(
                     'title'     => 'Type 8 (Parent Theme) Colors',
+                    'panel'     => 'type_eight_customizations',
                     'priority'  => 120,
+                ) );
+
+                $wp_customize->add_panel( 'type_eight_customizations' , array(
+                    'active_callback' => '',
+                    'capability'      => 'edit_theme_options',
+                    'description'     => esc_html__( 'Type Eight Parent Theme Customization Settings' ),
+                    'priority'        => 160,
+                    'theme_supports'  => '',
+                    'title'           => __( 'Type Eight (Parent Theme) Customizations' ),
                 ) );
 
                 $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
