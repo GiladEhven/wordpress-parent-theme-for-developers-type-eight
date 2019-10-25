@@ -10,7 +10,7 @@
 
             if ( is_admin() ) $this->admin();
 
-            $this->constants();
+            $this->customizer();
 
             $this->harden_wordpress();
 
@@ -37,6 +37,14 @@
                 }
 
             });
+
+        }
+
+        public function customizer() {
+
+            $this->constants();
+
+            require_once( get_template_directory() . '/CORE/core/website/customizer.php' );
 
         }
 
