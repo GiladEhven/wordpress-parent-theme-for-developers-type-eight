@@ -4,6 +4,8 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit( 'Nothing to see here. Go <a href="/">home</a>.' );
 
+    if ( ! isset( $content_width ) ) $content_width = 1024;
+
     class TypeEight {
 
         public function __construct() {
