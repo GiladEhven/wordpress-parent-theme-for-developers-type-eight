@@ -67,7 +67,7 @@
                     'panel'                => 'type_eight_customizations',
                     'priority'             => 120,
                     'theme_supports'       => '',
-                    'title'                => __( 'Type Eight (Parent Theme) Colors' ),
+                    'title'                => __( 'Type Eight Colors' ),
                 ));
 
                 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
