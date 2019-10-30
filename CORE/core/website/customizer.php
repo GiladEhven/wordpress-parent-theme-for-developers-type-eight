@@ -96,7 +96,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_facebook',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -125,7 +125,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_github',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -154,7 +154,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_instagram',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -183,7 +183,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_linkedin',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -212,7 +212,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_pinterest',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -241,7 +241,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_twitter',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -270,7 +270,7 @@
                     'priority'             => 10,
                     'section'              => 'type_eight_sitewide_social_profiles',
                     'settings'             => 'type_eight_sitewide_social_youtube',
-                    'type'                 => 'text',
+                    'type'                 => 'url',
                 ));
 
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
