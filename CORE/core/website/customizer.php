@@ -72,6 +72,49 @@
 
                 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 
+                $wp_customize->add_setting( 'type_eight_font_size_base' , array(
+                    'capability'           => 'edit_theme_options',
+                    'default'              => '',
+                    'dirty'                => false,
+                    'sanitize_callback'    => 'esc_url_raw',
+                    'sanitize_js_callback' => '',
+                    'theme_supports'       => '',
+                    'transport'            => 'refresh',
+                    'type'                 => 'theme_mod',
+                    'validate_callback'    => '',
+                ));
+
+                $wp_customize->add_control( 'type_eight_font_size_base', array(
+                    'capability'           => 'edit_theme_options',
+                    'description'          => esc_html__( 'Base font size for all contexts' ),
+                    'input_attrs'          => array(
+                        'class'            => 'type-eight-customizer type-eight-text type-eight-base',
+                        'style'            => '',
+                        'placeholder'      => __( 'Base font...' ),
+                        ),
+                    'label'                => __( 'Base Font' ),
+                    'priority'             => 10,
+                    'section'              => 'type_eight_font_sizes',
+                    'settings'             => 'type_eight_font_size_base',
+                    'type'                 => 'url',
+                ));
+
+                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                $wp_customize->add_section( 'type_eight_font_sizes' , array(
+                    'active_callback'      => '',
+                    'capability'           => 'edit_theme_options',
+                    'description'          => esc_html__( 'Type Eight Font Sizes' ),
+                    'description_hidden'   => 'false',
+                    'panel'                => 'type_eight_customizations',
+                    'priority'             => 120,
+                    'theme_supports'       => '',
+                    'title'                => __( 'Type Eight Font Sizes' ),
+                ));
+
+
+                // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
+
                 $wp_customize->add_setting( 'type_eight_sitewide_social_facebook' , array(
                     'capability'           => 'edit_theme_options',
                     'default'              => '',
